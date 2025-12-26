@@ -1,7 +1,6 @@
 # ==============================================================================
 # TAP
 # ==============================================================================
-
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
@@ -9,7 +8,6 @@ tap "homebrew/core"
 # ==============================================================================
 # BREW
 # ==============================================================================
-
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # GitHub command-line tool
@@ -38,11 +36,12 @@ brew "mise"
 brew "tree"
 # Extensible IRC client
 brew "weechat"
+#Organize software neatly under a single directory tree (e.g. /usr/local)
+brew "stow"
 
 # ==============================================================================
 # CASK
 # ==============================================================================
-
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Open-source BitTorrent client
@@ -67,35 +66,5 @@ cask "docker-desktop"
 cask "obs"
 # Native desktop client for WhatsApp
 cask "whatsapp"
-
-
-vscode "daltonmenezes.aura-theme"
-vscode "dbaeumer.vscode-eslint"
-vscode "docker.docker"
-vscode "esbenp.prettier-vscode"
-vscode "github.vscode-pull-request-github"
-vscode "golang.go"
-vscode "jakebecker.elixir-ls"
-vscode "mechatroner.rainbow-csv"
-vscode "ms-azuretools.vscode-azureresourcegroups"
-vscode "ms-azuretools.vscode-containers"
-vscode "ms-kubernetes-tools.vscode-kubernetes-tools"
-vscode "ms-python.debugpy"
-vscode "ms-python.python"
-vscode "ms-python.vscode-pylance"
-vscode "ms-vscode-remote.remote-containers"
-vscode "openai.chatgpt"
-vscode "pkief.material-icon-theme"
-vscode "qwtel.sqlite-viewer"
-vscode "redhat.java"
-vscode "redhat.vscode-yaml"
-vscode "sumneko.lua"
-vscode "usernamehw.errorlens"
-vscode "vscjava.vscode-gradle"
-vscode "vscjava.vscode-java-debug"
-vscode "vscjava.vscode-java-dependency"
-vscode "vscjava.vscode-java-pack"
-vscode "vscjava.vscode-java-test"
-vscode "vscjava.vscode-maven"
-go "golang.org/x/tools/gopls"
-go "honnef.co/go/tools/cmd/staticcheck"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
