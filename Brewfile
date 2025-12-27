@@ -36,8 +36,12 @@ brew "mise"
 brew "tree"
 # Extensible IRC client
 brew "weechat"
-#Organize software neatly under a single directory tree (e.g. /usr/local)
+# Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Create, run, and share large language models (LLMs)
+brew "ollama"
+# OpenAI's coding agent that runs in your terminal
+brew "codex"
 
 # ==============================================================================
 # CASK
@@ -66,7 +70,5 @@ cask "docker-desktop"
 cask "obs"
 # Native desktop client for WhatsApp
 cask "whatsapp"
-# OpenAI's coding agent that runs in your terminal
-cask "codex"
 # Free cross-platform office suite, fresh version
 cask "libreoffice"
