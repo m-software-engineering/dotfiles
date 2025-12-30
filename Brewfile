@@ -34,12 +34,12 @@ brew "gradle"
 brew "mise"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
-# Extensible IRC client
-brew "weechat"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Create, run, and share large language models (LLMs)
 brew "ollama"
+# AI coding agent, built for the terminal (OpenSource)
+brew "opencode"
 # OpenAI's coding agent that runs in your terminal
 brew "codex"
 
