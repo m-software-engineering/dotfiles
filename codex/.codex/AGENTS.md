@@ -1,5 +1,5 @@
 ---
-name: general-agents.md
+name: AGENTS.md
 description: Overall best practices on Software Engineering for all projects that you'll be working on.
 ---
 
@@ -35,7 +35,7 @@ All code MUST be CLEAN, SECURE, and PERFORMANT, following OWASP secure coding pr
 
 ---
 
-# Guardrails (Negative Instructions)
+## Guardrails (Negative Instructions)
 - Do not invent functions/classes that don’t exist in repo history or dependencies.
 - Do not suppress errors in code silently; prefer explicit handling or documented TODO with justification.
 - Do not bypass tests; FIX THE CAUSE, don’t mask symptoms.
@@ -43,13 +43,13 @@ All code MUST be CLEAN, SECURE, and PERFORMANT, following OWASP secure coding pr
 
 ---
 
-# Persistence & Turn‑Ending
+## Persistence & Turn‑Ending
 - Continue until the task is verified and deliverables are produced.
 - Only end your turn when you’re sure the problem is solved or deterministically blocked.
 
 ---
 
-# Failure Handling (Deterministic)
+## Failure Handling (Deterministic)
 - If blocked or evidence is insufficient, stop and return:
 ```json
 { "status":"blocked",
@@ -90,3 +90,4 @@ All code MUST be CLEAN, SECURE, and PERFORMANT, following OWASP secure coding pr
   "status": "success|failed|blocked"
 }
 ```
+
