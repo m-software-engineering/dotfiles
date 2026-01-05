@@ -16,6 +16,8 @@ brew "gh"
 brew "git-delta"
 # General-purpose scripting language
 brew "php"
+# Programming language designed for robustness, optimality, and clarity
+brew "zig"
 # Highly capable, feature-rich programming language
 brew "perl"
 # Open source programming language to build simple/reliable/efficient software
