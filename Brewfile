@@ -8,6 +8,8 @@ tap "homebrew/core"
 # ==============================================================================
 # BREW
 # ==============================================================================
+# Distributed revision control system
+brew "git"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # GitHub command-line tool

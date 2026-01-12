@@ -1,0 +1,90 @@
+{
+  // Editor Appearance and Layout Settings
+  "editor.fontSize": 15,
+  "editor.lineHeight": 1.7,
+  "editor.fontFamily": "'Fira Code'",
+  "editor.fontLigatures": true,
+  "editor.wordWrap": "on",
+  "editor.minimap.enabled": false,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorBlinking": "smooth",
+  "editor.inlayHints.padding": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.codeLens": true,
+  "editor.hover.enabled": "on",
+  "editor.hover.delay": 200,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "node_modules": true,
+    "**/target": true
+  },
+
+  // Formatting and Saving Behavior
+  "editor.formatOnSave": true,
+
+  // Workbench and UI Customizations
+  "workbench.colorTheme": "Aura Dark",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.activityBar.location": "top",
+  "workbench.sideBar.location": "right",
+  "workbench.tips.enabled": false,
+  "diffEditor.hideUnchangedRegions.enabled": true,
+
+  // Git and Version Control Settings
+  "git.autofetch": true,
+
+  // Explorer and File Management
+  "explorer.confirmDragAndDrop": false,
+
+  // Language-Specific and Formatter Settings
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+
+  // Extension-Specific Settings
+  "java.debug.settings.console": "internalConsole",
+  "java.format.enabled": true,
+  "python.analysis.typeCheckingMode": "basic",
+  "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
+  "containers.orchestratorClient": "com.microsoft.visualstudio.orchestrators.dockercompose",
+  "cSpell.language": "en,pt,pt_BR",
+  "rest-client.enableTelemetry": false,
+  "chat.instructionsFilesLocations": {
+    ".github/instructions": true
+  },
+  "chat.disableAIFeatures": true
+}
