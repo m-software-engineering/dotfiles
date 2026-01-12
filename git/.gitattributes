@@ -1,0 +1,104 @@
+# ==============================================================================
+# 1. GLOBAL LINE ENDING NORMALIZATION
+# ==============================================================================
+# Treat all files as text and normalize to LF on check-in.
+* text=auto
+
+# Explicitly declare text files to ensure they are always normalized
+*.c     text
+*.cpp   text
+*.cs    text
+*.css   text
+*.go    text
+*.html  text
+*.java  text
+*.js    text
+*.json  text
+*.jsx   text
+*.md    text
+*.php   text
+*.py    text
+*.rb    text
+*.rs    text
+*.sh    text
+*.sql   text
+*.toml  text
+*.ts    text
+*.tsx   text
+*.txt   text
+*.xml   text
+*.yaml  text
+*.yml   text
+*.zig   text
+*.lisp  text
+*.lsp   text
+*.cl    text
+*.el    text
+*.scm   text
+*.lua   text
+*.ex    text
+*.exs   text
+
+# ==============================================================================
+# 2. BINARY FILES & SAFETY
+# ==============================================================================
+# Images
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.svg   binary
+
+# Archives & Compiled Code
+*.jar   binary
+*.exe   binary
+*.dll   binary
+*.so    binary
+*.pyc   binary
+*.luac  binary
+*.beam  binary
+*.ez    binary
+
+# ==============================================================================
+# 3. SEMANTIC MERGE STRATEGIES (LOCKFILES)
+# ==============================================================================
+*.lock              binary
+package-lock.json   binary
+yarn.lock           binary
+pnpm-lock.yaml      binary
+go.sum              binary
+Cargo.lock          binary
+mix.lock            binary
+
+# ==============================================================================
+# 4. INTELLIGENT DIFFING
+# ==============================================================================
+*.c     diff=cpp
+*.h     diff=cpp
+*.cpp   diff=cpp
+*.hpp   diff=cpp
+*.cs    diff=csharp
+*.css   diff=css
+*.html  diff=html
+*.go    diff=golang
+*.java  diff=java
+*.js    diff=javascript
+*.json  diff=json
+*.jsx   diff=javascript
+*.md    diff=markdown
+*.php   diff=php
+*.py    diff=python
+*.rb    diff=ruby
+*.rs    diff=rust
+*.ts    diff=typescript
+*.tsx   diff=typescript
+*.ex    diff=elixir
+*.exs   diff=elixir
+*.lisp  diff=scheme
+*.lsp   diff=scheme
+*.cl    diff=scheme
+*.el    diff=scheme
+*.scm   diff=scheme
+*.zig   diff=zig
+*.lua   diff=lua

@@ -1,0 +1,88 @@
+# ==============================================================================
+# 1. IDENTITY & CORE SYSTEM
+# ==============================================================================
+[user]
+    name = Gabriel Machado
+    email = gabesmaxado@gmail.com
+
+[init]
+    defaultBranch = main
+
+[core]
+    excludesfile = ~/.gitignore
+    attributesfile = ~/.gitattributes
+    pager = delta
+    editor = code --wait
+
+[help]
+    # Fixes typos immediately (e.g., 'git stats' -> 'git status') after a prompt.
+    autocorrect = prompt
+
+# ==============================================================================
+# 2. LOCAL WORKFLOW
+# ==============================================================================
+[diff]
+    # 'histogram' is much smarter than default 'myers' for moved code blocks.
+    algorithm = histogram
+    submodule = log
+
+[diff "zig"]
+    xfuncname = "^(pub |export )?(fn|const|var|test) [a-zA-Z0-9_]+"
+
+[diff "lua"]
+    xfuncname = "^(local )?(function|test) [a-zA-Z0-9_]+"
+
+[merge]
+    # The "Zealous" Diff3. Shows Base, Current, and Incoming changes. Essential for understanding complex conflicts.
+    conflictstyle = zdiff3
+
+[rerere]
+    # "Reuse Recorded Resolution". Automatically re-applies conflict fixes
+    enabled = true
+
+[commit]
+    verbose = true
+    template = ~/.git-commit-template.txt
+
+[status]
+    # Shows detailed summary of submodule changes in 'git status'.
+    submoduleSummary = true
+
+# ==============================================================================
+# 3. SYNCING & NETWORKING
+# ==============================================================================
+[pull]
+    # Keeps history linear. Prevents "Merge branch 'main' of..." commit spam.
+    rebase = true
+
+[push]
+    # Automatically creates the upstream branch on the remote if it doesn't exist.
+    autoSetupRemote = true
+    # Pushes the current branch to a branch of the same name.
+    default = current
+
+[fetch]
+    # Deletes remote-tracking branches (origin/feat-x) that were deleted on remote.
+    prune = true
+    # WARNING: Deletes local tags that don't exist on remote.
+    # Ensure you push your tags, or they will vanish on fetch.
+    pruneTags = true
+
+# ==============================================================================
+# 4. ADVANCED & PERFORMANCE
+# Submodules and integrity checks.
+# ==============================================================================
+[submodule]
+    # WARNING: Makes all git commands recursive. Great for vendoring, 
+    # heavy for active development inside submodules.
+    recurse = true
+
+# [Performance Note]: The following are commented out. 
+# They force full SHA-1 validation on every transfer. 
+# Only enable if you suspect data corruption or are in a high-security environment.
+# [fetch]
+#     fsckObjects = true
+# [transfer]
+#     fsckObjects = true
+# [receive]
+#     fsckObjects = true
