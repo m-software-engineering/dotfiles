@@ -20,6 +20,7 @@
     "node_modules": true,
     "**/target": true
   },
+  "telemetry.telemetryLevel": "off",
 
   // Formatting and Saving Behavior
   "editor.formatOnSave": true,
