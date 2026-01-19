@@ -98,3 +98,6 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 
 # Sourcing ENV configuration into the shell session
 . "$HOME/.local/bin/env"
+
+# Activating MISE at the start of the zsh session
+eval "$(mise activate zsh)"
