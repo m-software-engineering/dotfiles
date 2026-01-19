@@ -1,0 +1,10 @@
+Chrome extension export started: Mon Jan 19 16:29:06 -03 2026
+DOTFILES_DIR: /Users/gabrielmachado/Documents/1-projects/dotfiles
+CHROME_PROFILE_ROOT: /Users/gabrielmachado/Library/Application Support/Google/Chrome
+Scanning profile: /Users/gabrielmachado/Library/Application Support/Google/Chrome/Default
+Export complete.
+Found 12 extension IDs.
+Wrote:
+  - /Users/gabrielmachado/Documents/1-projects/dotfiles/chrome/extensions-ids.txt
+  - /Users/gabrielmachado/Documents/1-projects/dotfiles/chrome/extensions-urls.txt
+Chrome extension export finished: Mon Jan 19 16:29:06 -03 2026
