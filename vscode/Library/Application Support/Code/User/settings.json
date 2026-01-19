@@ -5,6 +5,9 @@
   "editor.fontFamily": "'Fira Code'",
   "editor.fontLigatures": true,
   "editor.wordWrap": "on",
+  "editor.linkedEditing": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.minimap.enabled": false,
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorBlinking": "smooth",
@@ -13,6 +16,11 @@
   "editor.codeLens": true,
   "editor.hover.enabled": "on",
   "editor.hover.delay": 200,
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "on",
+    "strings": "on"
+  },
   "files.exclude": {
     "**/.git": true,
     "**/.DS_Store": true,
@@ -24,12 +32,13 @@
 
   // Formatting and Saving Behavior
   "editor.formatOnSave": true,
+  "files.autoSave": "onFocusChange",
 
   // Workbench and UI Customizations
   "workbench.colorTheme": "Aura Dark",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.activityBar.location": "top",
-  "workbench.sideBar.location": "right",
+  "workbench.sideBar.location": "left",
   "workbench.tips.enabled": false,
   "diffEditor.hideUnchangedRegions.enabled": true,
 
@@ -76,16 +85,52 @@
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
 
+  // Typescript & Javascript
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+
+  "javascript.inlayHints.parameterNames.enabled": "all",
+  "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "javascript.inlayHints.variableTypes.enabled": true,
+  "javascript.inlayHints.parameterTypes.enabled": true,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "javascript.inlayHints.enumMemberValues.enabled": true,
+
+  // Python (Pylance)
+  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.analysis.inlayHints.variableTypes": true,
+  "python.analysis.inlayHints.callArgumentNames": "all",
+  "python.analysis.inlayHints.pytestParameters": true,
+  "python.analysis.typeCheckingMode": "basic",
+
+  // Go
+  "go.inlayHints.assignVariableTypes": true,
+  "go.inlayHints.compositeLiteralFields": true,
+  "go.inlayHints.compositeLiteralTypes": true,
+  "go.inlayHints.constantValues": true,
+  "go.inlayHints.parameterNames": true,
+  "go.inlayHints.rangeVariableTypes": true,
+  "go.inlayHints.functionTypeParameters": true,
+
   // Extension-Specific Settings
   "java.debug.settings.console": "internalConsole",
   "java.format.enabled": true,
-  "python.analysis.typeCheckingMode": "basic",
   "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
   "containers.orchestratorClient": "com.microsoft.visualstudio.orchestrators.dockercompose",
   "cSpell.language": "en,pt,pt_BR",
   "rest-client.enableTelemetry": false,
+
+  // AI Chat Settings
   "chat.instructionsFilesLocations": {
     ".github/instructions": true
   },
+  "chat.editing.alwaysSaveWithGeneratedChanges": true,
+  "chat.detectParticipant.enabled": true,
+  "chat.editRequests": "hover",
+  "chat.edits2.enabled": true,
   "chat.disableAIFeatures": true
 }
