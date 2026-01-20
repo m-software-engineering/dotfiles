@@ -4,14 +4,18 @@ Opinionated dotfiles for a macOS setup, organized for GNU Stow. The repo is spli
 
 ## Structure
 
-Each top-level directory is a stow package:
+Each top-level directory is a stow package unless noted:
 
 - `zsh` - shell config
 - `git` - git config
-- `vscode` - VS Code settings
+- `vscode` - VS Code settings and extensions list
 - `ghostty` - Ghostty terminal config
 - `codex` - Codex CLI config
-- `Brewfile` - Homebrew bundle list
+- `opencode` - OpenCode CLI config
+- `chrome` - exported Chrome data (extensions + bookmarks)
+- `scripts` - helper scripts (not a stow package)
+- `images` - assets used by other configs (not a stow package)
+- `Brewfile` - Homebrew bundle list (not a stow package)
 
 ## Requirements
 
@@ -21,17 +25,13 @@ Each top-level directory is a stow package:
 
 ## Install
 
-Clone the repo and stow packages from the repo root:
+These dotfiles are installed via the m-config installer script. Run it with curl:
 
 ```sh
-git clone <your-repo-url> ~/dotfiles
-cd ~/dotfiles
-
-# pick what you want
-stow zsh git vscode ghostty codex
+curl -fsSL https://raw.githubusercontent.com/m-software-engineering/bash-scripts/refs/heads/main/m-config-install.sh | bash
 ```
 
-That will symlink each package into your home directory. To remove a package:
+That script clones the repo, installs dependencies, and stows packages into your home directory. To remove a package:
 
 ```sh
 stow -D zsh
@@ -44,6 +44,40 @@ Install everything from the `Brewfile`:
 ```sh
 brew bundle --file Brewfile
 ```
+
+## Chrome exports
+
+The `chrome` package stores exported data:
+
+- `chrome/extensions-ids.txt` and `chrome/extensions-urls.txt` for extensions
+- `chrome/bookmarks_1_19_26.html` for bookmarks
+
+Export extensions from your local Chrome profiles:
+
+```sh
+scripts/scripts/chrome-export-extensions.sh
+```
+
+Open the Web Store pages for each exported extension:
+
+```sh
+scripts/scripts/chrome-install-extensions.sh
+```
+
+## VS Code
+
+- Settings: `vscode/Library/Application Support/Code/User/settings.json`
+- Extensions list: `vscode/vscode-extensions.txt`
+
+Install listed extensions (requires `code` on PATH):
+
+```sh
+scripts/scripts/vscode-install-extensions.sh
+```
+
+## Maintenance scripts
+
+- `scripts/scripts/macos-debloat.sh` provides an interactive, idempotent cleanup for macOS 26+.
 
 ## Notes
 
