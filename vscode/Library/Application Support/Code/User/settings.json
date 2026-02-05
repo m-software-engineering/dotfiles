@@ -132,5 +132,11 @@
   "chat.detectParticipant.enabled": true,
   "chat.editRequests": "hover",
   "chat.edits2.enabled": true,
-  "chat.disableAIFeatures": false
+  "chat.disableAIFeatures": false,
+  "chat.viewSessions.orientation": "stacked",
+  "chat.alternativeToolAction.enabled": true,
+  "chat.mcp.gallery.enabled": true,
+  "chat.editing.explainChanges.enabled": true,
+  "chat.editor.wordWrap": "on",
+  "chat.viewProgressBadge.enabled": true
 }
