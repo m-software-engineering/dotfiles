@@ -15,7 +15,6 @@ ms-python.debugpy
 ms-python.python
 ms-python.vscode-pylance
 ms-vscode-remote.remote-containers
-openai.chatgpt
 pkief.material-icon-theme
 qwtel.sqlite-viewer
 redhat.java

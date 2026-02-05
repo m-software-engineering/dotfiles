@@ -76,3 +76,9 @@ cask "obs"
 cask "whatsapp"
 # Free cross-platform office suite, fresh version
 cask "libreoffice"
+# OpenAI's Codex desktop app for managing coding agents
+cask "codex-app"
+# Anthropic's official Claude AI desktop app
+cask "claude"
+# Terminal-based AI coding assistant
+cask "claude-code"
