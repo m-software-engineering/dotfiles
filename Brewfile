@@ -3,6 +3,7 @@
 # ==============================================================================
 tap "homebrew/bundle"
 tap "homebrew/cask"
+tap "homebrew/cask-fonts"
 tap "homebrew/core"
 
 # ==============================================================================
@@ -36,6 +37,8 @@ brew "maven"
 brew "gradle"
 # Polyglot runtime manager (asdf rust clone)
 brew "mise"
+# Node version manager
+brew "nvm"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
@@ -52,6 +55,8 @@ brew "codex"
 # ==============================================================================
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
+# Monospace programming font with ligatures
+cask "font-fira-code"
 # Open-source BitTorrent client
 cask "transmission"
 # Multimedia player

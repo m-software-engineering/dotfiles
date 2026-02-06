@@ -13,25 +13,40 @@ Each top-level directory is a stow package unless noted:
 - `codex` - Codex CLI config
 - `opencode` - OpenCode CLI config
 - `chrome` - exported Chrome data (extensions + bookmarks)
-- `scripts` - helper scripts (not a stow package)
-- `images` - assets used by other configs (not a stow package)
+- `scripts` - helper scripts
+- `images` - assets used by other configs
 - `Brewfile` - Homebrew bundle list (not a stow package)
 
 ## Requirements
 
 - macOS
+- Xcode Command Line Tools
 - GNU Stow (`brew install stow`)
 - Homebrew (optional, for `Brewfile`)
 
 ## Install
 
-These dotfiles are installed via the m-config installer script. Run it with curl:
+These dotfiles are installed via the m-config installer script. Run it with:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/m-software-engineering/bash-scripts/refs/heads/main/m-config-install.sh | bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/m-software-engineering/bash-scripts/refs/heads/main/m-config-install.sh)"
 ```
 
-That script clones the repo, installs dependencies, and stows packages into your home directory. To remove a package:
+That script validates Command Line Tools, installs dependencies, and stows packages into your home directory.
+
+If you already have a local dotfiles clone:
+
+```sh
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/m-software-engineering/bash-scripts/refs/heads/main/m-config-install.sh)" -- --dotfiles-dir /Users/gabrielmachado/Documents/1-projects/dotfiles
+```
+
+You can also use environment variables:
+
+```sh
+DOTFILES_DIR=/Users/gabrielmachado/Documents/1-projects/dotfiles DOTFILES_REPO_URL=https://github.com/m-software-engineering/dotfiles.git bash -c "$(curl -fsSL https://raw.githubusercontent.com/m-software-engineering/bash-scripts/refs/heads/main/m-config-install.sh)"
+```
+
+To remove a package:
 
 ```sh
 stow -D zsh
