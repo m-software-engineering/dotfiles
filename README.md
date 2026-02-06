@@ -37,13 +37,13 @@ That script validates Command Line Tools, installs dependencies, and stows packa
 If you already have a local dotfiles clone:
 
 ```sh
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/m-software-engineering/bash-scripts/refs/heads/main/m-config-install.sh)" -- --dotfiles-dir /Users/gabrielmachado/Documents/1-projects/dotfiles
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/m-software-engineering/bash-scripts/refs/heads/main/m-config-install.sh)" -- --dotfiles-dir [YOUR-DOTFILES-DIR-PATH]
 ```
 
 You can also use environment variables:
 
 ```sh
-DOTFILES_DIR=/Users/gabrielmachado/Documents/1-projects/dotfiles DOTFILES_REPO_URL=https://github.com/m-software-engineering/dotfiles.git bash -c "$(curl -fsSL https://raw.githubusercontent.com/m-software-engineering/bash-scripts/refs/heads/main/m-config-install.sh)"
+DOTFILES_DIR=[YOUR-DOTFILES-DIR-PATH] DOTFILES_REPO_URL=https://github.com/m-software-engineering/dotfiles.git bash -c "$(curl -fsSL https://raw.githubusercontent.com/m-software-engineering/bash-scripts/refs/heads/main/m-config-install.sh)"
 ```
 
 To remove a package:
