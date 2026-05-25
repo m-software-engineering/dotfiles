@@ -1,0 +1,8 @@
+Browser extension export migrated from the old Chrome package.
+DOTFILES_DIR: /Users/gabrielmachado/Documents/1-projects/dotfiles
+BROWSER_PROFILE_ROOT: /Users/gabrielmachado/Library/Application Support/net.imput.helium
+Export complete.
+Found 10 extension IDs.
+Wrote:
+  - /Users/gabrielmachado/Documents/1-projects/dotfiles/browser/extensions-ids.txt
+  - /Users/gabrielmachado/Documents/1-projects/dotfiles/browser/extensions-urls.txt

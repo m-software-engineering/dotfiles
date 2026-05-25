@@ -12,7 +12,7 @@
     excludesfile = ~/.gitignore
     attributesfile = ~/.gitattributes
     pager = delta
-    editor = code --wait
+    editor = codium --wait
 
 [help]
     # Fixes typos immediately (e.g., 'git stats' -> 'git status') after a prompt.

@@ -1,6 +1,6 @@
 {
   // Editor Appearance and Layout Settings
-  "editor.fontSize": 15,
+  "editor.fontSize": 13,
   "editor.lineHeight": 1.7,
   "editor.fontFamily": "'Fira Code'",
   "editor.fontLigatures": true,
@@ -35,7 +35,7 @@
   "files.autoSave": "onFocusChange",
 
   // Workbench and UI Customizations
-  "workbench.colorTheme": "Aura Dark",
+  "workbench.colorTheme": "Monokai",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.activityBar.location": "top",
   "workbench.sideBar.location": "left",
@@ -125,18 +125,5 @@
   "rest-client.enableTelemetry": false,
 
   // AI Chat Settings
-  "chat.instructionsFilesLocations": {
-    ".github/instructions": true
-  },
-  "chat.editing.alwaysSaveWithGeneratedChanges": true,
-  "chat.detectParticipant.enabled": true,
-  "chat.editRequests": "hover",
-  "chat.edits2.enabled": true,
-  "chat.viewSessions.orientation": "stacked",
-  "chat.alternativeToolAction.enabled": true,
-  "chat.mcp.gallery.enabled": true,
-  "chat.editing.explainChanges.enabled": true,
-  "chat.editor.wordWrap": "on",
-  "chat.viewProgressBadge.enabled": true,
-  "chat.disableAIFeatures": false
+  "chat.disableAIFeatures": true
 }

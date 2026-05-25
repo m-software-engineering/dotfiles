@@ -1,6 +1,4 @@
 https://chromewebstore.google.com/detail/abocjojdmemdpiffeadpdnicnlhcndcg
-https://chromewebstore.google.com/detail/ddipnaombfnagpagnpdkdinoekfhfjoh
-https://chromewebstore.google.com/detail/ddkjiahejlhfcafbddmgiahcphecmpfh
 https://chromewebstore.google.com/detail/efbjojhplkelaegfbieplglfidafgoka
 https://chromewebstore.google.com/detail/eimadpbcbfnmbkopoojfekhnkhdbieeh
 https://chromewebstore.google.com/detail/enamippconapkdmgfgjchkhakpfinmaj
@@ -9,3 +7,4 @@ https://chromewebstore.google.com/detail/gppongmhjkpfnbhagpmjfkannfbllamg
 https://chromewebstore.google.com/detail/loehkbkhflmmkempgkdpkkhghdiegicp
 https://chromewebstore.google.com/detail/mnjggcdmjocbbbhaepdhchncahnbgone
 https://chromewebstore.google.com/detail/pejdijmoenmkgeppbflobdenhhabjlaj
+https://chromewebstore.google.com/detail/hehggadaopoacecdllhhajmbjkdcmajg

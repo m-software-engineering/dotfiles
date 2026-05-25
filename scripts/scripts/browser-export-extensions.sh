@@ -1,27 +1,28 @@
-# scripts/chrome-export-extensions.sh
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Exports Chrome extension IDs + Web Store URLs into your dotfiles repo.
+# scripts/browser-export-extensions.sh
+#
+# Exports Chromium-family browser extension IDs + Web Store URLs into your dotfiles repo.
 # Output:
-#   chrome/extensions-ids.txt
-#   chrome/extensions-urls.txt
-#   chrome/extensions-export.log
+#   browser/extensions-ids.txt
+#   browser/extensions-urls.txt
+#   browser/extensions-export.log
 
 DOTFILES_DIR="${DOTFILES_DIR:-"$HOME/dotfiles"}"
-CHROME_DIR="$DOTFILES_DIR/chrome"
-OUT_IDS="$CHROME_DIR/extensions-ids.txt"
-OUT_URLS="$CHROME_DIR/extensions-urls.txt"
-OUT_LOG="$CHROME_DIR/extensions-export.log"
+BROWSER_DIR="$DOTFILES_DIR/browser"
+OUT_IDS="$BROWSER_DIR/extensions-ids.txt"
+OUT_URLS="$BROWSER_DIR/extensions-urls.txt"
+OUT_LOG="$BROWSER_DIR/extensions-export.log"
 
-# Chrome profile roots (macOS)
-CHROME_PROFILE_ROOT="${CHROME_PROFILE_ROOT:-"$HOME/Library/Application Support/Google/Chrome"}"
+# Chromium-family profile root on macOS. Defaults to Helium.
+BROWSER_PROFILE_ROOT="${BROWSER_PROFILE_ROOT:-${CHROME_PROFILE_ROOT:-"$HOME/Library/Application Support/net.imput.helium"}}"
 
-mkdir -p "$CHROME_DIR"
+mkdir -p "$BROWSER_DIR"
 
 log() { printf '%s\n' "$*" | tee -a "$OUT_LOG" >/dev/null; }
 
-# Determine which Chrome profiles exist (Default, Profile 1, Profile 2, ...)
+# Determine which Chromium-family profiles exist (Default, Profile 1, Profile 2, ...)
 discover_profiles() {
   local root="$1"
   if [ ! -d "$root" ]; then
@@ -43,18 +44,18 @@ extract_ext_ids_from_profile() {
 }
 
 : > "$OUT_LOG"
-log "Chrome extension export started: $(date)"
+log "Browser extension export started: $(date)"
 log "DOTFILES_DIR: $DOTFILES_DIR"
-log "CHROME_PROFILE_ROOT: $CHROME_PROFILE_ROOT"
+log "BROWSER_PROFILE_ROOT: $BROWSER_PROFILE_ROOT"
 
 profiles=()
 while IFS= read -r p; do
   profiles+=("$p")
-done < <(discover_profiles "$CHROME_PROFILE_ROOT")
+done < <(discover_profiles "$BROWSER_PROFILE_ROOT")
 
 if [ "${#profiles[@]}" -eq 0 ]; then
-  log "No Chrome profiles found under: $CHROME_PROFILE_ROOT"
-  log "If your profile root is different, set CHROME_PROFILE_ROOT."
+  log "No Chromium browser profiles found under: $BROWSER_PROFILE_ROOT"
+  log "If your profile root is different, set BROWSER_PROFILE_ROOT."
   exit 1
 fi
 
@@ -75,4 +76,4 @@ log "Found $count_ids extension IDs."
 log "Wrote:"
 log "  - $OUT_IDS"
 log "  - $OUT_URLS"
-log "Chrome extension export finished: $(date)"
+log "Browser extension export finished: $(date)"

@@ -8,13 +8,13 @@ Each top-level directory is a stow package unless noted:
 
 - `zsh` - shell config
 - `git` - git config
-- `vscode` - VS Code settings and extensions list
-- `ghostty` - Ghostty terminal config
+- `vscodium` - VSCodium settings and extensions list
+- `wezterm` - WezTerm terminal config
 - `codex` - Codex CLI config
-- `opencode` - OpenCode CLI config
-- `chrome` - exported Chrome data (extensions + bookmarks)
+- `claude` - Claude Code config
 - `scripts` - helper scripts
 - `images` - assets used by other configs
+- `browser` - exported Chromium-family browser data (not a stow package)
 - `Brewfile` - Homebrew bundle list (not a stow package)
 
 ## Requirements
@@ -60,35 +60,63 @@ Install everything from the `Brewfile`:
 brew bundle --file Brewfile
 ```
 
-## Chrome exports
+## macOS app defaults
 
-The `chrome` package stores exported data:
-
-- `chrome/extensions-ids.txt` and `chrome/extensions-urls.txt` for extensions
-- `chrome/bookmarks_1_19_26.html` for bookmarks
-
-Export extensions from your local Chrome profiles:
+Set Helium as the default browser, Microsoft Edge as the default PDF reader, and WezTerm as the default terminal handler:
 
 ```sh
-scripts/scripts/chrome-export-extensions.sh
+scripts/scripts/macos-set-default-apps.sh
+```
+
+Preview the changes without applying them:
+
+```sh
+scripts/scripts/macos-set-default-apps.sh --dry-run
+```
+
+This script requires `duti`, which is installed by the `Brewfile`.
+
+## Browser exports
+
+The `browser` directory stores exported Chromium-family browser data:
+
+- `browser/extensions-ids.txt` and `browser/extensions-urls.txt` for extensions
+- `browser/bookmarks_1_19_26.html` for bookmarks
+
+Export extensions from your local Helium profiles:
+
+```sh
+scripts/scripts/browser-export-extensions.sh
 ```
 
 Open the Web Store pages for each exported extension:
 
 ```sh
-scripts/scripts/chrome-install-extensions.sh
+scripts/scripts/browser-install-extensions.sh
 ```
 
-## VS Code
+Set `BROWSER_PROFILE_ROOT` to export from another Chromium-family browser profile root.
 
-- Settings: `vscode/Library/Application Support/Code/User/settings.json`
-- Extensions list: `vscode/vscode-extensions.txt`
+## VSCodium
 
-Install listed extensions (requires `code` on PATH):
+- Settings: `vscodium/Library/Application Support/VSCodium/User/settings.json`
+- Extensions list: `vscodium/vscodium-extensions.txt`
+
+Install listed extensions (requires `codium` on PATH):
 
 ```sh
-scripts/scripts/vscode-install-extensions.sh
+scripts/scripts/vscodium-install-extensions.sh
 ```
+
+The shell and Git configs use `codium --wait` as the default local editor.
+
+## AI agents
+
+- Codex is configured as a lean global default: full-access local sessions, approvals disabled, live web search enabled, and editor file opening disabled.
+- Codex does not pin models, local providers, profiles, or global MCP servers; use CLI flags or project-level config when a repo needs those.
+- Claude Code uses `permissions.defaultMode` set to `auto`.
+- Claude Code loads the shared agent guidance from `~/.codex/AGENTS.md` through `claude/.claude/CLAUDE.md`; stow both `codex` and `claude` packages together.
+- `Brewfile` installs `codex`, `claude`, and `claude-code`. If `claude` is not on PATH after setup, rerun `brew bundle` and restart the shell.
 
 ## Maintenance scripts
 
@@ -97,7 +125,7 @@ scripts/scripts/vscode-install-extensions.sh
 ## Notes
 
 - This repo assumes a Stow-friendly layout; add new configs under a package directory that mirrors the target path.
-- VS Code settings live under `vscode/Library/Application Support/Code/User/settings.json` to mirror macOS paths.
+- VSCodium settings live under `vscodium/Library/Application Support/VSCodium/User/settings.json` to mirror macOS paths.
 
 ## Customize
 

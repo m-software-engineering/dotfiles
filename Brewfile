@@ -37,38 +37,40 @@ brew "maven"
 brew "gradle"
 # Polyglot runtime manager (asdf rust clone)
 brew "mise"
-# Node version manager
-brew "nvm"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Select default apps for documents and URL schemes on macOS
+brew "duti"
 # Create, run, and share large language models (LLMs)
 brew "ollama"
-# AI coding agent, built for the terminal (OpenSource)
-brew "opencode"
 # OpenAI's coding agent that runs in your terminal
 brew "codex"
 
 # ==============================================================================
 # CASK
 # ==============================================================================
-# Terminal emulator that uses platform-native UI and GPU acceleration
-cask "ghostty"
+# GPU-accelerated cross-platform terminal emulator and multiplexer
+cask "wezterm"
 # Monospace programming font with ligatures
 cask "font-fira-code"
 # Open-source BitTorrent client
 cask "transmission"
 # Multimedia player
 cask "vlc"
-# Google Chrome Web Browser
+# Chromium-based web browser
+cask "helium-browser"
+# Web browser
 cask "google-chrome"
+# Multi-platform web browser
+cask "microsoft-edge"
 # Web security testing toolkit
 cask "burp-suite"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
-# Open source Code Editor
-cask "visual-studio-code"
+# Binary releases of VS Code without MS branding/telemetry/licensing
+cask "vscodium"
 # Universal database tool and SQL client
 cask "dbeaver-community"
 # Voice and text chat software

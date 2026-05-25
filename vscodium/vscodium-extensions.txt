@@ -1,4 +1,3 @@
-daltonmenezes.aura-theme
 dbaeumer.vscode-eslint
 docker.docker
 esbenp.prettier-vscode
