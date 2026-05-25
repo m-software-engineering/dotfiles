@@ -1,12 +1,4 @@
 # ==============================================================================
-# TAP
-# ==============================================================================
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/cask-fonts"
-tap "homebrew/core"
-
-# ==============================================================================
 # BREW
 # ==============================================================================
 # Distributed revision control system
@@ -45,8 +37,6 @@ brew "stow"
 brew "duti"
 # Create, run, and share large language models (LLMs)
 brew "ollama"
-# OpenAI's coding agent that runs in your terminal
-brew "codex"
 
 # ==============================================================================
 # CASK
@@ -69,6 +59,8 @@ cask "microsoft-edge"
 cask "burp-suite"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
 # Binary releases of VS Code without MS branding/telemetry/licensing
 cask "vscodium"
 # Universal database tool and SQL client
