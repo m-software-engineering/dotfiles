@@ -76,6 +76,24 @@ scripts/scripts/macos-set-default-apps.sh --dry-run
 
 This script requires `duti`, which is installed by the `Brewfile`.
 
+## macOS performance and appearance
+
+Apply the conservative performance/appearance profile:
+
+```sh
+scripts/scripts/macos-performance-beauty.sh
+```
+
+Preview the settings without applying them:
+
+```sh
+scripts/scripts/macos-performance-beauty.sh --dry-run
+```
+
+The profile keeps macOS fast and polished by tuning global UI latency, Dock animation, Finder defaults, Stage Manager, screenshot behavior, and portable trackpad gestures including three-finger drag. It intentionally does not pin Dock apps, change hot corners, rewrite keyboard shortcuts, or alter power settings.
+
+The m-config installer offers this step as an opt-in prompt.
+
 ## Browser exports
 
 The `browser` directory stores exported Chromium-family browser data:
@@ -121,6 +139,7 @@ The shell and Git configs use `codium --wait` as the default local editor.
 ## Maintenance scripts
 
 - `scripts/scripts/macos-debloat.sh` provides an interactive, idempotent cleanup for macOS 26+.
+- `scripts/scripts/macos-performance-beauty.sh` applies the reusable macOS performance and appearance profile.
 
 ## Notes
 
