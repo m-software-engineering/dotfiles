@@ -10,12 +10,14 @@ Each top-level directory is a stow package unless noted:
 - `git` - git config
 - `vscodium` - VSCodium settings and extensions list
 - `wezterm` - WezTerm terminal config
+- `homebrew` - Homebrew bundle, maintenance script, and LaunchAgent
+- `ssh` - secure OpenSSH client defaults and host templates
 - `codex` - Codex CLI config
 - `claude` - Claude Code config
 - `scripts` - helper scripts
 - `images` - assets used by other configs
 - `browser` - exported Chromium-family browser data (not a stow package)
-- `Brewfile` - Homebrew bundle list (not a stow package)
+- `Brewfile` - shortcut symlink to `homebrew/.config/homebrew/Brewfile`
 
 ## Requirements
 
@@ -52,12 +54,75 @@ To remove a package:
 stow -D zsh
 ```
 
-## Homebrew bundle (optional)
+## Homebrew
 
-Install everything from the `Brewfile`:
+The canonical bundle lives at `homebrew/.config/homebrew/Brewfile`. The top-level
+`Brewfile` is a shortcut symlink for the existing bundle workflow.
+
+Install everything from the bundle:
 
 ```sh
 brew bundle --file Brewfile
+```
+
+Enable the daily Homebrew maintenance job after stowing `homebrew`:
+
+```sh
+stow --target "$HOME" homebrew
+launchctl bootstrap "gui/$(id -u)" "$HOME/Library/LaunchAgents/com.m-software-engineering.homebrew-maintenance.plist"
+launchctl enable "gui/$(id -u)/com.m-software-engineering.homebrew-maintenance"
+```
+
+The LaunchAgent executes `$HOME/.config/homebrew/homebrew-maintenance.sh`, which is
+installed by the `homebrew` package.
+
+The job runs at 03:30 local time and performs `brew update`, `brew bundle install
+--upgrade`, formula upgrades, greedy cask upgrades, and `brew cleanup --prune=14`.
+Preview the command sequence without changing installed packages:
+
+```sh
+homebrew/.config/homebrew/homebrew-maintenance.sh --dry-run --brewfile homebrew/.config/homebrew/Brewfile
+```
+
+Logs are written to `~/Library/Logs/m-software-engineering/homebrew-maintenance.log`.
+Launchd startup errors are mirrored to `/tmp/com.m-software-engineering.homebrew-maintenance.err.log`.
+
+Disable the scheduled job:
+
+```sh
+launchctl bootout "gui/$(id -u)" "$HOME/Library/LaunchAgents/com.m-software-engineering.homebrew-maintenance.plist"
+```
+
+## SSH
+
+Stow the SSH package to install secure OpenSSH client defaults:
+
+```sh
+stow --target "$HOME" ssh
+```
+
+The global config disables public-key, password, keyboard-interactive, and agent
+forwarding auth by default. This prevents unknown servers from enumerating keys
+loaded in `ssh-agent` or present in default identity paths. Add a local
+host-specific file under `~/.ssh/config.d/` when a server should see exactly one
+public key. Host snippets in that directory are ignored by Git except for the
+tracked `example.conf` template.
+
+Example host onboarding:
+
+```sh
+ssh-keygen -t ed25519 -a 100 -f "$HOME/.ssh/id_ed25519_github" -C "github"
+cp "$HOME/.ssh/config.d/example.conf" "$HOME/.ssh/config.d/github.conf"
+chmod 700 "$HOME/.ssh"
+chmod 600 "$HOME/.ssh/config" "$HOME/.ssh/config.d/github.conf" "$HOME/.ssh/id_ed25519_github"
+```
+
+Then edit `~/.ssh/config.d/github.conf` so the `github.com` block is uncommented
+and points at `~/.ssh/id_ed25519_github`. Confirm the effective config before
+connecting:
+
+```sh
+ssh -G github.com | rg '^(pubkeyauthentication|identityfile|identitiesonly|passwordauthentication|kbdinteractiveauthentication) '
 ```
 
 ## macOS app defaults
@@ -138,6 +203,7 @@ The shell and Git configs use `codium --wait` as the default local editor.
 
 ## Maintenance scripts
 
+- `homebrew/.config/homebrew/homebrew-maintenance.sh` updates and upgrades Homebrew packages for the LaunchAgent.
 - `scripts/scripts/macos-debloat.sh` provides an interactive, idempotent cleanup for macOS 26+.
 - `scripts/scripts/macos-performance-beauty.sh` applies the reusable macOS performance and appearance profile.
 
