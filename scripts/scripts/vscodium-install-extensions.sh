@@ -25,13 +25,18 @@ extension_is_installed() {
   grep -Fqix -- "${extension_id}" <<<"${installed_extensions}"
 }
 
-# Installs missing manifest entries and reports all invalid or failed entries together.
-install_extensions() {
-  local installed_extensions
-  if ! installed_extensions="$(codium --list-extensions)"; then
+# Lists installed extensions and translates CLI failure into an actionable error.
+list_installed_extensions() {
+  if ! codium --list-extensions; then
     printf 'Unable to list installed VSCodium extensions.\n' >&2
     return 1
   fi
+}
+
+# Installs missing manifest entries and reports all invalid or failed entries together.
+install_extensions() {
+  local installed_extensions
+  installed_extensions="$(list_installed_extensions)" || return 1
 
   local installed_count=0
   local skipped_count=0
@@ -61,7 +66,7 @@ install_extensions() {
     printf 'Installing: %s\n' "${extension_id}"
     if codium --install-extension "${extension_id}"; then
       installed_count=$((installed_count + 1))
-      installed_extensions="${installed_extensions}${installed_extensions:+$'\n'}${extension_id}"
+      installed_extensions="$(list_installed_extensions)" || return 1
     else
       printf 'Failed to install: %s\n' "${extension_id}" >&2
       failed_count=$((failed_count + 1))
