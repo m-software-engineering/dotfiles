@@ -32,6 +32,9 @@ case "${1:-}" in
       exit 3
     fi
     printf '%s\n' "${extension_id}" >>"${CODIUM_STATE}"
+    if [[ -n "${CODIUM_TRANSITIVE_EXTENSION:-}" ]]; then
+      printf '%s\n' "${CODIUM_TRANSITIVE_EXTENSION}" >>"${CODIUM_STATE}"
+    fi
     ;;
   *)
     exit 4
@@ -76,6 +79,20 @@ function normalizes_comments_whitespace_crlf_and_duplicates { #@test
   [ "${status}" -eq 0 ]
   [[ "${output}" == *"Extension summary: installed=1 skipped=1 failed=0"* ]]
   [ "$(cat "${CODIUM_CALL_LOG}")" = "publisher.extension" ]
+}
+
+function refreshes_installed_state_after_transitive_dependency_installation { #@test
+  cat >"${EXTENSIONS_FILE}" <<'EOF'
+publisher.parent
+publisher.dependency
+EOF
+  export CODIUM_TRANSITIVE_EXTENSION="publisher.dependency"
+
+  run_installer
+
+  [ "${status}" -eq 0 ]
+  [[ "${output}" == *"Extension summary: installed=1 skipped=1 failed=0"* ]]
+  [ "$(cat "${CODIUM_CALL_LOG}")" = "publisher.parent" ]
 }
 
 function reports_invalid_and_failed_entries_after_attempting_the_manifest { #@test
