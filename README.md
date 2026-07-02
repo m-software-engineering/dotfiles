@@ -191,6 +191,10 @@ Install listed extensions (requires `codium` on PATH):
 scripts/scripts/vscodium-install-extensions.sh
 ```
 
+The extension list defines required extensions rather than an exact profile. The installer skips extensions that are already installed, installs only missing entries, and leaves user-added extensions untouched. Repeated runs are safe and produce no extension changes once the required set is present.
+
+Run the focused installer tests with `bats test/vscodium-install-extensions.bats`.
+
 The shell and Git configs use `codium --wait` as the default local editor.
 
 ## AI agents
