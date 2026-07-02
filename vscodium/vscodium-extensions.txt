@@ -5,15 +5,14 @@ github.vscode-pull-request-github
 golang.go
 humao.rest-client
 hverlin.mise-vscode
-jakebecker.elixir-ls
+elixir-lsp.elixir-ls
 mechatroner.rainbow-csv
 ms-azuretools.vscode-azureresourcegroups
 ms-azuretools.vscode-containers
 ms-kubernetes-tools.vscode-kubernetes-tools
 ms-python.debugpy
 ms-python.python
-ms-python.vscode-pylance
-ms-vscode-remote.remote-containers
+ms-pyright.pyright
 pkief.material-icon-theme
 qwtel.sqlite-viewer
 redhat.java
