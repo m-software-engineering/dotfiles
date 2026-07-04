@@ -79,3 +79,5 @@ cask "libreoffice"
 cask "claude"
 # Terminal-based AI coding assistant
 cask "claude-code"
+# Video game digital distribution service
+cask "steam"
