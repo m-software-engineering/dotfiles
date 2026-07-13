@@ -40,41 +40,12 @@ All code MUST be CLEAN, SECURE, and PERFORMANT, following OWASP secure coding pr
 - Only end your turn when you’re sure the problem is solved or deterministically blocked.
 
 ## Failure Handling (Deterministic)
-- If blocked or evidence is insufficient, stop and return:
-```json
-{ "status":"blocked",
-  "reason":"missing_dependency|ambiguous_spec|unreproducible",
-  "next_actions":[ "...explicit data or steps required..." ],
-  "evidence":[ {"file":"...", "lines":"..", "snippet":"..."} ] }
-```
+- If blocked or evidence is insufficient, stop and clearly explain the blocking reason, the evidence, and the explicit next actions required to continue.
 - If a tool error occurs, report exact command and stderr; propose a recovery.
 
-## Output Contract (Return this envelope every task)
-
-```json
-{
-  "summary": "one-paragraph status and outcome",
-  "assumptions": ["..."],
-  "analysis": [
-    {"file":"path", "lines":"start-end", "finding":"root cause / relevant detail"}
-  ],
-  "plan": {
-    "steps": ["..."],
-    "files_to_change": ["..."],
-    "tests": ["unit:..., integration:..."],
-    "risks": ["..."],
-    "rollback": "git revert instructions or toggles"
-  },
-  "diff": "unified patch text",
-  "verification": {
-    "commands": ["..."],
-    "results": {"passed":N, "failed":M, "key_logs":["..."]}
-  },
-  "deliverables": {
-    "commit_message": "feat|fix(scope): concise message",
-    "pr_description": "Problem | Approach | Tests | Risks | Follow-ups",
-    "checklist": ["build ✓", "tests ✓", "lint ✓", "types ✓", "security ✓", "perf ✓"]
-  },
-  "status": "success|failed|blocked"
-}
-```
+## Response Style
+- Respond in clear, natural language using only the structure needed for the task; do not return a fixed JSON envelope unless the user explicitly requests JSON.
+- Lead with the outcome, then summarize the most relevant changes, evidence, and verification results.
+- Include assumptions, risks, rollback guidance, file/line references, commands, diffs, commit messages, or PR descriptions only when they materially help the user or are explicitly requested.
+- Keep simple tasks concise. Use headings and lists for complex work when they improve readability.
+- Clearly distinguish successful verification from checks that were skipped, unavailable, or failed.
