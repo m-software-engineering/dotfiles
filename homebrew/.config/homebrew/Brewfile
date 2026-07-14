@@ -81,3 +81,5 @@ cask "claude"
 cask "claude-code"
 # Video game digital distribution service
 cask "steam"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
