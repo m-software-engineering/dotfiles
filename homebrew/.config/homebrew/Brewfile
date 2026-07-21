@@ -37,6 +37,11 @@ brew "stow"
 brew "duti"
 # Create, run, and share large language models (LLMs)
 brew "ollama"
+# Open-source AI coding agent, built for the terminal
+brew "opencode"
+# Self-improving AI agent that creates skills from experience
+brew "hermes-agent"
+
 
 # ==============================================================================
 # CASK
