@@ -2,3 +2,8 @@ sandbox_mode = "danger-full-access"
 approval_policy = "never"
 web_search = "live"
 file_opener = "none"
+
+[tui]
+# Keep the TUI expressive while avoiding continuous activity updates in the title bar.
+animations = true
+terminal_title = ["project-name"]

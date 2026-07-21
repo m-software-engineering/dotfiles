@@ -11,13 +11,16 @@ config.font = wezterm.font_with_fallback({
 config.font_size = 13.0
 config.line_height = 1.08
 
+-- Preserve smooth Retina rendering and subtle translucency without returning
+-- to the original 120 FPS and heavy-blur compositor cost.
 config.front_end = "WebGpu"
-config.webgpu_power_preference = "HighPerformance"
-config.max_fps = 120
-config.animation_fps = 60
+config.webgpu_power_preference = "LowPower"
+config.max_fps = 60
+config.animation_fps = 30
+config.cursor_blink_rate = 700
 
-config.window_background_opacity = 0.82
-config.macos_window_background_blur = 28
+config.window_background_opacity = 0.92
+config.macos_window_background_blur = 12
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.window_padding = {
   left = 14,

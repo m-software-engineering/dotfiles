@@ -141,6 +141,15 @@ scripts/scripts/macos-set-default-apps.sh --dry-run
 
 This script requires `duti`, which is installed by the `Brewfile`.
 
+## WezTerm
+
+The WezTerm profile balances a polished macOS appearance with sustained
+efficiency on Apple silicon. It retains smooth 60 FPS rendering, animated UI,
+cursor motion, and subtle translucency while using the low-power WebGPU
+preference, limiting animation to 30 FPS, and avoiding the original heavy blur.
+This keeps the Monokai-based visual character without returning to the original
+120 FPS compositor load.
+
 ## macOS performance and appearance
 
 Apply the conservative performance/appearance profile:
@@ -199,7 +208,7 @@ The shell and Git configs use `codium --wait` as the default local editor.
 
 ## AI agents
 
-- Codex is configured as a lean global default: full-access local sessions, approvals disabled, live web search enabled, and editor file opening disabled.
+- Codex is configured as a lean global default: full-access local sessions, approvals disabled, live web search enabled, editor file opening disabled, animated TUI rendering, and a stable project title that avoids constant title-bar redraws.
 - Codex does not pin models, local providers, profiles, or global MCP servers; use CLI flags or project-level config when a repo needs those.
 - Claude Code uses `permissions.defaultMode` set to `auto`.
 - Claude Code loads the shared agent guidance from `~/.codex/AGENTS.md` through `claude/.claude/CLAUDE.md`; stow both `codex` and `claude` packages together.
