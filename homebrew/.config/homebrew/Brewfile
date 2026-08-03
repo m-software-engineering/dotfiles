@@ -31,6 +31,8 @@ brew "gradle"
 brew "mise"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Terminal multiplexer
+brew "tmux"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Select default apps for documents and URL schemes on macOS
