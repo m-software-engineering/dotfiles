@@ -65,4 +65,13 @@ config.colors = {
   },
 }
 
+-- Forward Ctrl+Space to tmux. macOS Input Sources may still steal this chord.
+config.keys = {
+  {
+    key = "Space",
+    mods = "CTRL",
+    action = wezterm.action.SendKey({ key = "Space", mods = "CTRL" }),
+  },
+}
+
 return config

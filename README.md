@@ -10,6 +10,7 @@ Each top-level directory is a stow package unless noted:
 - `git` - git config
 - `vscodium` - VSCodium settings and extensions list
 - `wezterm` - WezTerm terminal config
+- `tmux` - tmux multiplexer config
 - `homebrew` - Homebrew bundle, maintenance script, and LaunchAgent
 - `ssh` - secure OpenSSH client defaults and host templates
 - `codex` - Codex CLI config
@@ -149,6 +150,24 @@ cursor motion, and subtle translucency while using the low-power WebGPU
 preference, limiting animation to 30 FPS, and avoiding the original heavy blur.
 This keeps the Monokai-based visual character without returning to the original
 120 FPS compositor load.
+
+## tmux
+
+Stow the tmux package to install a lean XDG config:
+
+```sh
+stow --target "$HOME" tmux
+```
+
+Prefix is `Ctrl+Space`. Detach is `Ctrl+Space` then `d`. `Ctrl-d` stays EOF;
+zsh `IGNORE_EOF` stops a stray `Ctrl-d` from killing the last pane. WezTerm
+forwards `Ctrl+Space` to tmux. If the prefix does nothing, disable **Control+Space**
+under System Settings → Keyboard → Keyboard Shortcuts → Input Sources.
+
+Splits use the current pane path: `Ctrl+Space` `|` side-by-side, `Ctrl+Space` `-`
+stacked. Move with `h`/`j`/`k`/`l`, resize with `H`/`J`/`K`/`L`, reload with `r`.
+
+Run the config tests with `bats test/tmux-config.bats`.
 
 ## macOS performance and appearance
 
