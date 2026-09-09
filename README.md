@@ -9,6 +9,7 @@ Each top-level directory is a stow package unless noted:
 - `zsh` - shell config
 - `git` - git config
 - `vscodium` - VSCodium settings and extensions list
+- `nvim` - Neovim + LazyVim config
 - `wezterm` - WezTerm terminal config
 - `tmux` - tmux multiplexer config
 - `homebrew` - Homebrew bundle, maintenance script, and LaunchAgent
@@ -18,6 +19,7 @@ Each top-level directory is a stow package unless noted:
 - `scripts` - helper scripts
 - `images` - assets used by other configs
 - `browser` - exported Chromium-family browser data (not a stow package)
+- `test` - bats tests (not a stow package)
 - `Brewfile` - shortcut symlink to `homebrew/.config/homebrew/Brewfile`
 
 ## Requirements
@@ -142,13 +144,31 @@ scripts/scripts/macos-set-default-apps.sh --dry-run
 
 This script requires `duti`, which is installed by the `Brewfile`.
 
+## Theme
+
+Visual configs use [Aura Dark](https://github.com/daltonmenezes/aura-theme):
+
+- WezTerm color scheme and tab chrome
+- tmux status, panes, and messages
+- VSCodium `Aura Dark` plus `daltonmenezes.aura-theme`
+- Neovim / LazyVim `aura-dark` with Aura lualine, bufferline, and dashboard
+- git-delta decorations and `syntax-theme = ansi` so diffs follow the terminal
+- zsh prompt, fzf, autosuggestions, and the `m config` banner
+- Helium/Chrome theme id `ddipnaombfnagpagnpdkdinoekfhfjoh`
+
+Canonical tokens: background `#15141b`, foreground `#edecee`, purple `#a277ff`,
+green `#61ffca`, orange `#ffca85`, pink `#f694ff`, blue `#82e2ff`, red `#ff6767`,
+comment gray `#6d6d6d`, selection `#29263c`.
+
+Run the palette checks with `bats test/aura-theme.bats`.
+
 ## WezTerm
 
 The WezTerm profile balances a polished macOS appearance with sustained
 efficiency on Apple silicon. It retains smooth 60 FPS rendering, animated UI,
 cursor motion, and subtle translucency while using the low-power WebGPU
 preference, limiting animation to 30 FPS, and avoiding the original heavy blur.
-This keeps the Monokai-based visual character without returning to the original
+This keeps the Aura Dark visual character without returning to the original
 120 FPS compositor load.
 
 ## tmux
@@ -168,6 +188,24 @@ Splits use the current pane path: `Ctrl+Space` `|` side-by-side, `Ctrl+Space` `-
 stacked. Move with `h`/`j`/`k`/`l`, resize with `H`/`J`/`K`/`L`, reload with `r`.
 
 Run the config tests with `bats test/tmux-config.bats`.
+
+## Neovim / LazyVim
+
+Stow the nvim package to install a LazyVim starter with Aura Dark:
+
+```sh
+stow --target "$HOME" nvim
+```
+
+`Brewfile` installs `neovim`, `ripgrep`, `fd`, `lazygit`, and
+`font-fira-code-nerd-font`. First launch bootstraps lazy.nvim and LazyVim.
+
+The config keeps LazyVim defaults for keymaps, LSP, and completion, then layers
+Aura UI on lualine, bufferline, Snacks dashboard/indent, and Flash/WhichKey.
+Language extras match this machine's stack: TypeScript, Python, Go, Docker,
+JSON, YAML, TOML, Markdown, and Git.
+
+Run the config tests with `bats test/nvim-config.bats`.
 
 ## macOS performance and appearance
 
@@ -211,6 +249,7 @@ Set `BROWSER_PROFILE_ROOT` to export from another Chromium-family browser profil
 ## VSCodium
 
 - Settings: `vscodium/Library/Application Support/VSCodium/User/settings.json`
+- Theme: `Aura Dark` via `daltonmenezes.aura-theme`
 - Extensions list: `vscodium/vscodium-extensions.txt`
 
 Install listed extensions (requires `codium` on PATH):

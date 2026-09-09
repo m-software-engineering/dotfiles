@@ -5,7 +5,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="crcandy"
+ZSH_THEME=""
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -57,7 +57,20 @@ HIST_STAMPS="%Y-%m-%d %H:%M:%S"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git fzf zsh-interactive-cd colored-man-pages command-not-found zsh-completions zsh-autosuggestions)
 
+export FZF_DEFAULT_OPTS="\
+  --color=bg:#15141b,fg:#edecee,hl:#a277ff \
+  --color=bg+:#29263c,fg+:#edecee,hl+:#61ffca \
+  --color=info:#82e2ff,prompt:#a277ff,pointer:#61ffca \
+  --color=marker:#f694ff,spinner:#ffca85,header:#6d6d6d"
+
 source $ZSH/oh-my-zsh.sh
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6d6d6d"
+ZSH_THEME_GIT_PROMPT_PREFIX="%F{#6d6d6d}git:%f%F{#ffca85}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%f "
+ZSH_THEME_GIT_PROMPT_DIRTY="%F{#ff6767}*%f"
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+PROMPT=$'%F{#61ffca}%n@%m%f %F{#a277ff}%~%f %F{#6d6d6d}%D{%H:%M:%S}%f $(git_prompt_info)\n%F{#a277ff}❯%f '
 
 # User configuration
 
@@ -68,7 +81,7 @@ export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  export EDITOR='nvim'
 else
   export EDITOR='codium --wait'
 fi
@@ -103,5 +116,5 @@ setopt IGNORE_EOF
 
 # One-line stamp; skip panes too narrow to hold "m config".
 if [[ -o interactive && ${COLUMNS:-80} -ge 9 ]]; then
-  printf '\033[0;31mm config\033[0m\n'
+  printf '\033[38;2;162;119;255mm config\033[0m\n'
 fi

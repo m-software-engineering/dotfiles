@@ -33,6 +33,14 @@ brew "mise"
 brew "tree"
 # Terminal multiplexer
 brew "tmux"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Simple terminal UI for git commands
+brew "lazygit"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Select default apps for documents and URL schemes on macOS
@@ -52,6 +60,8 @@ brew "hermes-agent"
 cask "wezterm"
 # Monospace programming font with ligatures
 cask "font-fira-code"
+# Fira Code with nerd font glyphs for LazyVim and terminal icons
+cask "font-fira-code-nerd-font"
 # Open-source BitTorrent client
 cask "transmission"
 # Multimedia player

@@ -2,8 +2,60 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
-config.color_scheme = "Monokai Pro (Gogh)"
+-- Aura Dark: https://github.com/daltonmenezes/aura-theme
+local aura = {
+  purple = "#a277ff",
+  green = "#61ffca",
+  orange = "#ffca85",
+  pink = "#f694ff",
+  blue = "#82e2ff",
+  red = "#ff6767",
+  fg = "#edecee",
+  gray = "#6d6d6d",
+  bg = "#15141b",
+  surface = "#29263c",
+  black = "#110f18",
+  bright_black = "#4d4d4d",
+}
+
+config.color_schemes = {
+  ["Aura Dark"] = {
+    foreground = aura.fg,
+    background = aura.bg,
+    cursor_bg = aura.purple,
+    cursor_fg = aura.bg,
+    cursor_border = aura.purple,
+    selection_fg = aura.fg,
+    selection_bg = aura.surface,
+    scrollbar_thumb = aura.surface,
+    split = aura.surface,
+    compose_cursor = aura.orange,
+    ansi = {
+      aura.black,
+      aura.red,
+      aura.green,
+      aura.orange,
+      aura.blue,
+      aura.purple,
+      aura.green,
+      aura.fg,
+    },
+    brights = {
+      aura.bright_black,
+      aura.red,
+      aura.green,
+      aura.orange,
+      aura.blue,
+      aura.pink,
+      aura.blue,
+      aura.fg,
+    },
+  },
+}
+config.color_scheme = "Aura Dark"
+
 config.font = wezterm.font_with_fallback({
+  { family = "FiraCode Nerd Font", weight = "Regular" },
   { family = "Fira Code", weight = "Regular" },
   "Symbols Nerd Font Mono",
   "Noto Color Emoji",
@@ -40,27 +92,38 @@ config.hide_tab_bar_if_only_one_tab = false
 config.show_new_tab_button_in_tab_bar = false
 config.tab_bar_at_bottom = false
 config.window_frame = {
-  font = wezterm.font({ family = "Fira Code", weight = "Medium" }),
+  font = wezterm.font_with_fallback({
+    { family = "FiraCode Nerd Font", weight = "Medium" },
+    { family = "Fira Code", weight = "Medium" },
+  }),
   font_size = 12.0,
-  active_titlebar_bg = "#272822",
-  inactive_titlebar_bg = "#1f201b",
+  active_titlebar_bg = aura.bg,
+  inactive_titlebar_bg = aura.black,
 }
 
 config.colors = {
   tab_bar = {
-    background = "#1f201b",
+    background = aura.bg,
     active_tab = {
-      bg_color = "#272822",
-      fg_color = "#f8f8f2",
+      bg_color = aura.surface,
+      fg_color = aura.green,
       intensity = "Bold",
     },
     inactive_tab = {
-      bg_color = "#1f201b",
-      fg_color = "#a59f85",
+      bg_color = aura.bg,
+      fg_color = aura.gray,
     },
     inactive_tab_hover = {
-      bg_color = "#34352f",
-      fg_color = "#f8f8f2",
+      bg_color = aura.surface,
+      fg_color = aura.fg,
+    },
+    new_tab = {
+      bg_color = aura.bg,
+      fg_color = aura.gray,
+    },
+    new_tab_hover = {
+      bg_color = aura.surface,
+      fg_color = aura.purple,
     },
   },
 }

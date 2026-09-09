@@ -14,6 +14,25 @@
     pager = delta
     editor = codium --wait
 
+[delta]
+    dark = true
+    navigate = true
+    line-numbers = true
+    syntax-theme = ansi
+    plus-style = syntax "#14332c"
+    plus-emph-style = syntax "#61ffca"
+    minus-style = syntax "#3a1d22"
+    minus-emph-style = syntax "#ff6767"
+    file-style = "#a277ff" bold
+    file-decoration-style = "#a277ff" ul
+    hunk-header-style = syntax bold
+    hunk-header-decoration-style = "#a277ff" ul
+    line-numbers-minus-style = "#ff6767"
+    line-numbers-plus-style = "#61ffca"
+    line-numbers-zero-style = "#6d6d6d"
+    zero-style = syntax
+    whitespace-error-style = "#ff6767" reverse
+
 [help]
     # Fixes typos immediately (e.g., 'git stats' -> 'git status') after a prompt.
     autocorrect = prompt
