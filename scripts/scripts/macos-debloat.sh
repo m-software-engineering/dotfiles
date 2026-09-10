@@ -1,6 +1,4 @@
 #!/bin/bash
-set -euo pipefail
-IFS=$'\n\t'
 
 # macos-debloat.sh
 # Interactive, transparent, idempotent macOS cleanup for macOS 26+
@@ -19,9 +17,28 @@ IFS=$'\n\t'
 # - Some actions may require "Full Disk Access" for Terminal.
 # - Default choices are conservative; user can opt in to more aggressive options interactively.
 
-LOG_FILE="/tmp/macos-debloat.$(date +%Y%m%d-%H%M%S).log"
-DRY_RUN=1
-NEED_SUDO=0
+initialize_defaults() {
+  LOG_FILE="/tmp/macos-debloat.$(date +%Y%m%d-%H%M%S).log"
+  DRY_RUN=1
+  NEED_SUDO=0
+
+  ACTION_EMPTY_TRASH=0
+  ACTION_USER_LOGS=1
+  ACTION_SYSTEM_LOGS=0
+  ACTION_USER_CACHES_TARGETED=1
+  ACTION_IOS_BACKUPS=1
+
+  ACTION_BREW_CLEANUP=0
+  ACTION_DEV_CLEAN=0
+  ACTION_PKG_CACHES=0
+
+  ACTION_TM_THIN=0
+  TM_THIN_GB=15
+  ACTION_TM_DELETE_ALL=0
+
+  ACTION_DNS_FLUSH=0
+  ACTION_SPOTLIGHT_REINDEX=0
+}
 
 # ---------- helpers ----------
 log() { printf "%s %s\n" "$(date '+%Y-%m-%d %H:%M:%S')" "$*" | tee -a "$LOG_FILE" >/dev/null; }
@@ -30,6 +47,7 @@ die() { log "ERROR: $*"; exit 1; }
 
 need_cmd() { command -v "$1" >/dev/null 2>&1; }
 is_macos() { [[ "$(uname -s)" == "Darwin" ]]; }
+is_privileged() { [[ "$EUID" -eq 0 ]]; }
 
 human_df() { df -h / | tail -n 1 | awk '{print "Disk: used=" $3 " free=" $4 " (" $5 " used)"}'; }
 
@@ -108,8 +126,6 @@ cleanup_keepalive() {
     kill "$SUDO_KEEPALIVE_PID" >/dev/null 2>&1 || true
   fi
 }
-trap cleanup_keepalive EXIT
-
 # Safe rm -rf wrapper (idempotent)
 rm_rf() {
   local path="$1"
@@ -165,23 +181,6 @@ find_delete_top_level_dirs_older_than_days() {
 }
 
 # ---------- actions ----------
-ACTION_EMPTY_TRASH=0
-ACTION_USER_LOGS=1
-ACTION_SYSTEM_LOGS=0
-ACTION_USER_CACHES_TARGETED=1
-ACTION_IOS_BACKUPS=1
-
-ACTION_BREW_CLEANUP=0
-ACTION_DEV_CLEAN=0
-ACTION_PKG_CACHES=0
-
-ACTION_TM_THIN=0
-TM_THIN_GB=15
-ACTION_TM_DELETE_ALL=0
-
-ACTION_DNS_FLUSH=0
-ACTION_SPOTLIGHT_REINDEX=0
-
 cleanup_user_logs() {
   local home="$1"
   find_delete_files_older_than_days "$home/Library/Logs" 30
@@ -209,21 +208,65 @@ cleanup_user_caches_targeted() {
 }
 
 empty_trash() {
-  local home="$1"
-  log "Emptying user Trash..."
-  # Use glob carefully; if empty, zsh-like nullglob isn't default in bash; handle by checking directory
-  local trash="$home/.Trash"
+  local home="${1:-}"
+  local normalized_home
+  local canonical_home
+  local trash
+
+  if [[ -z "$home" || "$home" != /* ]]; then
+    warn "Refusing to empty Trash for an unsafe home path."
+    return 1
+  fi
+  if is_privileged; then
+    warn "Refusing to empty Trash with root privileges."
+    return 1
+  fi
+
+  normalized_home="$home"
+  while [[ "$normalized_home" != "/" && "$normalized_home" == */ ]]; do
+    normalized_home="${normalized_home%/}"
+  done
+
+  if ! canonical_home="$(cd -P -- "$normalized_home" 2>/dev/null && pwd -P)"; then
+    warn "Refusing to empty Trash for an unsafe home path."
+    return 1
+  fi
+  if [[ "$canonical_home" =~ ^/+$ || "$canonical_home" != "$normalized_home" ]]; then
+    warn "Refusing to empty Trash for an unsafe home path."
+    return 1
+  fi
+
+  trash="$canonical_home/.Trash"
+  if [[ -L "$trash" ]]; then
+    warn "Refusing to empty symlinked Trash: $trash"
+    return 1
+  fi
   if [[ ! -d "$trash" ]]; then
     return 0
   fi
-  if [[ "$DRY_RUN" -eq 1 ]]; then
-    log "[DRY] Would delete contents of: $trash"
-    ls -A "$trash" 2>/dev/null | sed 's/^/[DRY] would delete: /' | tee -a "$LOG_FILE" >/dev/null || true
-  else
-    # delete contents, not the folder
-    rm -rf -- "$trash"/* 2>/dev/null || true
-    rm -rf -- "$trash"/.* 2>/dev/null || true
-  fi
+
+  (
+    local opened_trash
+    if ! cd -P -- "$trash" 2>/dev/null; then
+      warn "Refusing to empty Trash after failing to enter it: $trash"
+      return 1
+    fi
+    if ! opened_trash="$(pwd -P)" || [[ "$opened_trash" != "$trash" ]]; then
+      warn "Refusing to empty Trash after its path changed: $trash"
+      return 1
+    fi
+
+    log "Emptying user Trash..."
+    if [[ "$DRY_RUN" -eq 1 ]]; then
+      log "[DRY] Would delete contents of: $trash"
+      find . -mindepth 1 -maxdepth 1 -print |
+        while IFS= read -r child; do
+          printf '[DRY] would delete: %s/%s\n' "$trash" "${child#./}"
+        done | tee -a "$LOG_FILE" >/dev/null
+    else
+      find . -mindepth 1 -maxdepth 1 -exec rm -rf -- {} +
+    fi
+  )
 }
 
 homebrew_cleanup() {
@@ -497,4 +540,10 @@ main() {
   fi
 }
 
-main "$@"
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+  set -euo pipefail
+  IFS=$'\n\t'
+  initialize_defaults
+  trap cleanup_keepalive EXIT
+  main "$@"
+fi
