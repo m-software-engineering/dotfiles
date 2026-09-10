@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: macos-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install test tools
+        run: brew install bats-core shellcheck
+
+      - name: Run Bats tests
+        run: bats test
+
+      - name: Check shell syntax
+        run: |
+          for script in scripts/scripts/*.sh; do
+            bash -n "$script"
+          done
+
+      - name: Run ShellCheck
+        run: shellcheck scripts/scripts/*.sh test/*.bats
