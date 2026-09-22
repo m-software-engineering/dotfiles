@@ -1,1 +1,4 @@
 .DS_Store
+
+# Retired local package. Keep any existing Claude data without tracking or stowing it.
+claude/

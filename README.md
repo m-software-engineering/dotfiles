@@ -15,7 +15,7 @@ Each top-level directory is a stow package unless noted:
 - `homebrew` - Homebrew bundle, maintenance script, and LaunchAgent
 - `ssh` - secure OpenSSH client defaults and host templates
 - `codex` - Codex CLI config
-- `claude` - Claude Code config
+- `opencode` - OpenCode config
 - `scripts` - helper scripts
 - `images` - assets used by other configs
 - `browser` - exported Chromium-family browser data (not a stow package)
@@ -266,11 +266,11 @@ The shell and Git configs use `codium --wait` as the default local editor.
 
 ## AI agents
 
-- Codex is configured as a lean global default: full-access local sessions, approvals disabled, live web search enabled, editor file opening disabled, animated TUI rendering, and a stable project title that avoids constant title-bar redraws.
-- Codex does not pin models, local providers, profiles, or global MCP servers; use CLI flags or project-level config when a repo needs those.
-- Claude Code uses `permissions.defaultMode` set to `auto`.
-- Claude Code loads the shared agent guidance from `~/.codex/AGENTS.md` through `claude/.claude/CLAUDE.md`; stow both `codex` and `claude` packages together.
-- `Brewfile` installs `codex`, `claude`, and `claude-code`. If `claude` is not on PATH after setup, rerun `brew bundle` and restart the shell.
+- Codex and OpenCode share the same global `AGENTS.md` guidance and use their native full-access/auto-approve settings. The shared Codex config stays portable: project trust, desktop appearance, plugins, and machine paths are local state and are not tracked.
+- Both harnesses configure Chrome DevTools, Playwright, Context7, Figma, and DeepWiki MCP servers. Chrome DevTools and Playwright run through `npx`; the others use their official remote endpoints.
+- Context7 reads `CONTEXT7_API_KEY` from the environment. The installer can write it to `~/.config/m-config/context7.env` with owner-only permissions; the key is never stored in this repository.
+- Figma requires a one-time OAuth authorization in each harness: run `codex mcp login figma` and `opencode mcp auth figma` after installation.
+- `Brewfile` installs both `codex` and `opencode`. Restart the shell after setup so the Context7 environment is loaded.
 
 ## Maintenance scripts
 
