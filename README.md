@@ -68,6 +68,8 @@ Install everything from the bundle:
 brew bundle --file Brewfile
 ```
 
+The bundle installs Concord (`brew "concord"`), the terminal Discord client, and RTK (`brew "rtk"`), the CLI proxy that minimizes LLM token consumption. It does not install the Discord desktop cask. Concord session files under `~/.local/state/concord` stay on the machine and are not stowed. ai-memory is not a Homebrew formula; the installer downloads the native macOS release.
+
 Enable the daily Homebrew maintenance job after stowing `homebrew`:
 
 ```sh
@@ -270,7 +272,8 @@ The shell and Git configs use `codium --wait` as the default local editor.
 - Both harnesses configure Chrome DevTools, Playwright, Context7, Figma, and DeepWiki MCP servers. Chrome DevTools and Playwright run through `npx`; the others use their official remote endpoints.
 - Context7 reads `CONTEXT7_API_KEY` from the environment. The installer can write it to `~/.config/m-config/context7.env` with owner-only permissions; the key is never stored in this repository.
 - Figma requires a one-time OAuth authorization in each harness: run `codex mcp login figma` and `opencode mcp auth figma` after installation.
-- `Brewfile` installs both `codex` and `opencode`. Restart the shell after setup so the Context7 environment is loaded.
+- `Brewfile` installs `codex`, OpenCode V2 from `anomalyco/tap` (`opencode-v2`), and RTK (`brew "rtk"`, https://github.com/rtk-ai/rtk). Do not add the core `opencode` formula: it is V1 and conflicts because both install an `opencode` binary. Do not install the crates.io `rtk` package; that name can resolve to a different project. Restart the shell after setup so the Context7 environment is loaded.
+- The installer, not this bundle, installs the native ai-memory binary from https://github.com/akitaonrails/ai-memory and the Hermes skills `i-have-adhd` and `teach`.
 
 ## Maintenance scripts
 
