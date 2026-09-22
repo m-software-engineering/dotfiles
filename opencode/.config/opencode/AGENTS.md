@@ -1,5 +1,5 @@
 ---
-name: CLAUDE.md
+name: AGENTS.md
 description: Overall best practices on Software Engineering for all projects that you'll be working on.
 ---
 

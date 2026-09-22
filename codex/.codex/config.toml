@@ -2,8 +2,30 @@ sandbox_mode = "danger-full-access"
 approval_policy = "never"
 web_search = "live"
 file_opener = "none"
+model = "gpt-6-astra"
+model_reasoning_effort = "high"
 
 [tui]
 # Keep the TUI expressive while avoiding continuous activity updates in the title bar.
 animations = true
 terminal_title = ["project-name"]
+
+[mcp_servers.chrome-devtools]
+command = "npx"
+args = ["-y", "chrome-devtools-mcp@1.9.0"]
+startup_timeout_sec = 120
+
+[mcp_servers.playwright]
+command = "npx"
+args = ["-y", "@playwright/mcp@0.0.82"]
+startup_timeout_sec = 120
+
+[mcp_servers.context7]
+url = "https://mcp.context7.com/mcp"
+bearer_token_env_var = "CONTEXT7_API_KEY"
+
+[mcp_servers.figma]
+url = "https://mcp.figma.com/mcp"
+
+[mcp_servers.deepwiki]
+url = "https://mcp.deepwiki.com/mcp"

@@ -106,6 +106,11 @@ if [[ -f "$HOME/.local/bin/env" ]]; then
   . "$HOME/.local/bin/env"
 fi
 
+# Load installer-managed secrets without keeping credentials in dotfiles.
+if [[ -r "$HOME/.config/m-config/context7.env" ]]; then
+  . "$HOME/.config/m-config/context7.env"
+fi
+
 # Activating MISE at the start of the zsh session
 if command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
@@ -118,3 +123,4 @@ setopt IGNORE_EOF
 if [[ -o interactive && ${COLUMNS:-80} -ge 9 ]]; then
   printf '\033[38;2;162;119;255mm config\033[0m\n'
 fi
+
