@@ -47,10 +47,15 @@ brew "stow"
 brew "duti"
 # Create, run, and share large language models (LLMs)
 brew "ollama"
-# Open-source AI coding agent, built for the terminal
-brew "opencode"
+tap "anomalyco/tap"
+# OpenCode V2 - the AI coding agent for the terminal
+brew "opencode-v2"
 # Self-improving AI agent that creates skills from experience
 brew "hermes-agent"
+# CLI proxy to minimize LLM token consumption
+brew "rtk"
+# Terminal user interface client for Discord
+brew "concord"
 
 
 # ==============================================================================
