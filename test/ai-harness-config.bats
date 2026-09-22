@@ -1,4 +1,5 @@
 #!/usr/bin/env bats
+# shellcheck disable=SC2154
 
 setup() {
   PROJECT_ROOT="$(cd "$(dirname "${BATS_TEST_FILENAME}")/.." >/dev/null 2>&1 && pwd)"
@@ -59,7 +60,7 @@ function context7_secret_is_referenced_but_not_embedded { #@test
   grep -Fq 'CONTEXT7_API_KEY' "${CODEX_CONFIG}"
   grep -Fq 'CONTEXT7_API_KEY' "${OPENCODE_CONFIG}"
   ! grep -ER 'ctx7sk[-_]' "${PROJECT_ROOT}/codex" "${PROJECT_ROOT}/opencode" "${PROJECT_ROOT}/zsh"
-  grep -Fq '$HOME/.config/m-config/context7.env' "${PROJECT_ROOT}/zsh/.zshrc"
+  grep -Fq "\$HOME/.config/m-config/context7.env" "${PROJECT_ROOT}/zsh/.zshrc"
 }
 
 function codex_shared_config_excludes_machine_local_state { #@test
