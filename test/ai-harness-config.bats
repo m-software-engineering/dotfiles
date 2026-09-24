@@ -82,6 +82,11 @@ function brewfile_installs_opencode_v2_not_core_v1 { #@test
   ! grep -Eq '^[[:space:]]*brew[[:space:]]+"opencode"[[:space:]]*(#|$)' "${BREWFILE}"
 }
 
+function brewfile_installs_grok_bot_cask { #@test
+  grep -Fq 'cask "grok-bot"' "${BREWFILE}"
+  grep -Fq 'AI teammates that work across your apps and tools' "${BREWFILE}"
+}
+
 function retired_apps_are_absent_from_managed_packages { #@test
   local retired
   for retired in claude claude-code discord whatsapp steam; do

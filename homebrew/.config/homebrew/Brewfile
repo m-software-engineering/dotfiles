@@ -81,6 +81,8 @@ cask "microsoft-edge"
 cask "burp-suite"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
+# AI teammates that work across your apps and tools
+cask "grok-bot"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
 # Binary releases of VS Code without MS branding/telemetry/licensing
