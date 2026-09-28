@@ -15,23 +15,23 @@
     editor = codium --wait
 
 [delta]
-    dark = true
+    light = true
     navigate = true
     line-numbers = true
     syntax-theme = ansi
-    plus-style = syntax "#14332c"
-    plus-emph-style = syntax "#61ffca"
-    minus-style = syntax "#3a1d22"
-    minus-emph-style = syntax "#ff6767"
-    file-style = "#a277ff" bold
-    file-decoration-style = "#a277ff" ul
+    plus-style = syntax "#cce1cd"
+    plus-emph-style = syntax "#b2d5ae"
+    minus-style = syntax "#e9c4cf"
+    minus-emph-style = syntax "#e5a2b3"
+    file-style = "#8839ef" bold
+    file-decoration-style = "#8839ef" ul
     hunk-header-style = syntax bold
-    hunk-header-decoration-style = "#a277ff" ul
-    line-numbers-minus-style = "#ff6767"
-    line-numbers-plus-style = "#61ffca"
-    line-numbers-zero-style = "#6d6d6d"
+    hunk-header-decoration-style = "#8839ef" ul
+    line-numbers-minus-style = "#d20f39"
+    line-numbers-plus-style = "#40a02b"
+    line-numbers-zero-style = "#9ca0b0"
     zero-style = syntax
-    whitespace-error-style = "#ff6767" reverse
+    whitespace-error-style = "#d20f39" reverse
 
 [help]
     # Fixes typos immediately (e.g., 'git stats' -> 'git status') after a prompt.

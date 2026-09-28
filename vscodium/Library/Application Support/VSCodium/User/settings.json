@@ -35,7 +35,8 @@
   "files.autoSave": "onFocusChange",
 
   // Workbench and UI Customizations
-  "workbench.colorTheme": "Aura Dark",
+  "workbench.colorTheme": "Catppuccin Latte",
+  "workbench.preferredLightColorTheme": "Catppuccin Latte",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.activityBar.location": "top",
   "workbench.sideBar.location": "left",

@@ -2,57 +2,66 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
--- Aura Dark: https://github.com/daltonmenezes/aura-theme
-local aura = {
-  purple = "#a277ff",
-  green = "#61ffca",
-  orange = "#ffca85",
-  pink = "#f694ff",
-  blue = "#82e2ff",
-  red = "#ff6767",
-  fg = "#edecee",
-  gray = "#6d6d6d",
-  bg = "#15141b",
-  surface = "#29263c",
-  black = "#110f18",
-  bright_black = "#4d4d4d",
+-- Catppuccin Latte: https://github.com/catppuccin/catppuccin
+-- ANSI mapping matches the official catppuccin/wezterm Latte port.
+local latte = {
+  rosewater = "#dc8a78",
+  flamingo = "#dd7878",
+  pink = "#ea76cb",
+  mauve = "#8839ef",
+  red = "#d20f39",
+  peach = "#fe640b",
+  yellow = "#df8e1d",
+  green = "#40a02b",
+  teal = "#179299",
+  blue = "#1e66f5",
+  text = "#4c4f69",
+  subtext1 = "#5c5f77",
+  subtext0 = "#6c6f85",
+  overlay0 = "#9ca0b0",
+  surface2 = "#acb0be",
+  surface1 = "#bcc0cc",
+  surface0 = "#ccd0da",
+  crust = "#dce0e8",
+  mantle = "#e6e9ef",
+  base = "#eff1f5",
 }
 
 config.color_schemes = {
-  ["Aura Dark"] = {
-    foreground = aura.fg,
-    background = aura.bg,
-    cursor_bg = aura.purple,
-    cursor_fg = aura.bg,
-    cursor_border = aura.purple,
-    selection_fg = aura.fg,
-    selection_bg = aura.surface,
-    scrollbar_thumb = aura.surface,
-    split = aura.surface,
-    compose_cursor = aura.orange,
+  ["Catppuccin Latte"] = {
+    foreground = latte.text,
+    background = latte.base,
+    cursor_bg = latte.rosewater,
+    cursor_fg = latte.base,
+    cursor_border = latte.rosewater,
+    selection_fg = latte.text,
+    selection_bg = latte.surface2,
+    scrollbar_thumb = latte.surface2,
+    split = latte.overlay0,
+    compose_cursor = latte.flamingo,
     ansi = {
-      aura.black,
-      aura.red,
-      aura.green,
-      aura.orange,
-      aura.blue,
-      aura.purple,
-      aura.green,
-      aura.fg,
+      latte.subtext1,
+      latte.red,
+      latte.green,
+      latte.yellow,
+      latte.blue,
+      latte.pink,
+      latte.teal,
+      latte.surface2,
     },
     brights = {
-      aura.bright_black,
-      aura.red,
-      aura.green,
-      aura.orange,
-      aura.blue,
-      aura.pink,
-      aura.blue,
-      aura.fg,
+      latte.subtext0,
+      latte.red,
+      latte.green,
+      latte.yellow,
+      latte.blue,
+      latte.pink,
+      latte.teal,
+      latte.surface1,
     },
   },
 }
-config.color_scheme = "Aura Dark"
+config.color_scheme = "Catppuccin Latte"
 
 config.font = wezterm.font_with_fallback({
   { family = "FiraCode Nerd Font", weight = "Regular" },
@@ -97,33 +106,33 @@ config.window_frame = {
     { family = "Fira Code", weight = "Medium" },
   }),
   font_size = 12.0,
-  active_titlebar_bg = aura.bg,
-  inactive_titlebar_bg = aura.black,
+  active_titlebar_bg = latte.crust,
+  inactive_titlebar_bg = latte.mantle,
 }
 
 config.colors = {
   tab_bar = {
-    background = aura.bg,
+    background = latte.crust,
     active_tab = {
-      bg_color = aura.surface,
-      fg_color = aura.green,
+      bg_color = latte.mauve,
+      fg_color = latte.base,
       intensity = "Bold",
     },
     inactive_tab = {
-      bg_color = aura.bg,
-      fg_color = aura.gray,
+      bg_color = latte.mantle,
+      fg_color = latte.text,
     },
     inactive_tab_hover = {
-      bg_color = aura.surface,
-      fg_color = aura.fg,
+      bg_color = latte.base,
+      fg_color = latte.text,
     },
     new_tab = {
-      bg_color = aura.bg,
-      fg_color = aura.gray,
+      bg_color = latte.surface0,
+      fg_color = latte.text,
     },
     new_tab_hover = {
-      bg_color = aura.surface,
-      fg_color = aura.purple,
+      bg_color = latte.surface1,
+      fg_color = latte.text,
     },
   },
 }

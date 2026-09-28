@@ -93,6 +93,10 @@ cask "dbeaver-community"
 cask "docker-desktop"
 # Open-source software for live streaming and screen recording
 cask "obs"
+# Screenshot measurement and annotation tool
+cask "shottr"
+# Enable Windows-like alt-tab
+cask "alt-tab"
 # Free cross-platform office suite, fresh version
 cask "libreoffice"
 # Knowledge base that works on top of a local folder of plain text Markdown files

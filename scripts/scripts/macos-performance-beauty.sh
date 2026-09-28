@@ -124,7 +124,9 @@ delete_key_if_present() {
 apply_global_interface_defaults() {
 	log "Applying global interface defaults."
 
-	write_string NSGlobalDomain AppleInterfaceStyle Dark
+	# Light mode is the absence of AppleInterfaceStyle. Writing "Light" is ignored.
+	delete_key_if_present NSGlobalDomain AppleInterfaceStyle
+	write_bool NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically false
 	write_int NSGlobalDomain AppleAccentColor 4
 	write_string NSGlobalDomain AppleHighlightColor "0.698039 0.843137 1.000000 Blue"
 	write_string NSGlobalDomain AppleShowScrollBars WhenScrolling

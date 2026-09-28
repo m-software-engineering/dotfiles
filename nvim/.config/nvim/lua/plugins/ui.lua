@@ -1,14 +1,14 @@
-local aura = {
-  purple = "#a277ff",
-  green = "#61ffca",
-  orange = "#ffca85",
-  pink = "#f694ff",
-  blue = "#82e2ff",
-  red = "#ff6767",
-  fg = "#edecee",
-  gray = "#6d6d6d",
-  bg = "#15141b",
-  surface = "#29263c",
+local latte = {
+  mauve = "#8839ef",
+  green = "#40a02b",
+  peach = "#fe640b",
+  pink = "#ea76cb",
+  blue = "#1e66f5",
+  red = "#d20f39",
+  text = "#4c4f69",
+  subtext = "#6c6f85",
+  base = "#eff1f5",
+  surface = "#ccd0da",
 }
 
 return {
@@ -18,34 +18,34 @@ return {
       opts.options = opts.options or {}
       opts.options.theme = {
         normal = {
-          a = { fg = aura.bg, bg = aura.purple, gui = "bold" },
-          b = { fg = aura.fg, bg = aura.surface },
-          c = { fg = aura.gray, bg = aura.bg },
+          a = { fg = latte.base, bg = latte.mauve, gui = "bold" },
+          b = { fg = latte.text, bg = latte.surface },
+          c = { fg = latte.subtext, bg = latte.base },
         },
         insert = {
-          a = { fg = aura.bg, bg = aura.green, gui = "bold" },
-          b = { fg = aura.fg, bg = aura.surface },
-          c = { fg = aura.gray, bg = aura.bg },
+          a = { fg = latte.base, bg = latte.green, gui = "bold" },
+          b = { fg = latte.text, bg = latte.surface },
+          c = { fg = latte.subtext, bg = latte.base },
         },
         visual = {
-          a = { fg = aura.bg, bg = aura.orange, gui = "bold" },
-          b = { fg = aura.fg, bg = aura.surface },
-          c = { fg = aura.gray, bg = aura.bg },
+          a = { fg = latte.base, bg = latte.peach, gui = "bold" },
+          b = { fg = latte.text, bg = latte.surface },
+          c = { fg = latte.subtext, bg = latte.base },
         },
         replace = {
-          a = { fg = aura.bg, bg = aura.red, gui = "bold" },
-          b = { fg = aura.fg, bg = aura.surface },
-          c = { fg = aura.gray, bg = aura.bg },
+          a = { fg = latte.base, bg = latte.red, gui = "bold" },
+          b = { fg = latte.text, bg = latte.surface },
+          c = { fg = latte.subtext, bg = latte.base },
         },
         command = {
-          a = { fg = aura.bg, bg = aura.pink, gui = "bold" },
-          b = { fg = aura.fg, bg = aura.surface },
-          c = { fg = aura.gray, bg = aura.bg },
+          a = { fg = latte.base, bg = latte.pink, gui = "bold" },
+          b = { fg = latte.text, bg = latte.surface },
+          c = { fg = latte.subtext, bg = latte.base },
         },
         inactive = {
-          a = { fg = aura.gray, bg = aura.bg },
-          b = { fg = aura.gray, bg = aura.bg },
-          c = { fg = aura.gray, bg = aura.bg },
+          a = { fg = latte.subtext, bg = latte.base },
+          b = { fg = latte.subtext, bg = latte.base },
+          c = { fg = latte.subtext, bg = latte.base },
         },
       }
       opts.options.component_separators = { left = "│", right = "│" }
@@ -57,19 +57,19 @@ return {
     optional = true,
     opts = {
       highlights = {
-        fill = { bg = aura.bg },
-        background = { fg = aura.gray, bg = aura.bg },
-        buffer_visible = { fg = aura.gray, bg = aura.bg },
-        buffer_selected = { fg = aura.green, bg = aura.surface, bold = true, italic = false },
-        tab = { fg = aura.gray, bg = aura.bg },
-        tab_selected = { fg = aura.green, bg = aura.surface, bold = true },
-        close_button = { fg = aura.gray, bg = aura.bg },
-        close_button_selected = { fg = aura.red, bg = aura.surface },
-        separator = { fg = aura.bg, bg = aura.bg },
-        separator_selected = { fg = aura.bg, bg = aura.surface },
-        modified = { fg = aura.orange, bg = aura.bg },
-        modified_selected = { fg = aura.orange, bg = aura.surface },
-        indicator_selected = { fg = aura.purple, bg = aura.surface },
+        fill = { bg = latte.base },
+        background = { fg = latte.subtext, bg = latte.base },
+        buffer_visible = { fg = latte.subtext, bg = latte.base },
+        buffer_selected = { fg = latte.green, bg = latte.surface, bold = true, italic = false },
+        tab = { fg = latte.subtext, bg = latte.base },
+        tab_selected = { fg = latte.green, bg = latte.surface, bold = true },
+        close_button = { fg = latte.subtext, bg = latte.base },
+        close_button_selected = { fg = latte.red, bg = latte.surface },
+        separator = { fg = latte.base, bg = latte.base },
+        separator_selected = { fg = latte.base, bg = latte.surface },
+        modified = { fg = latte.peach, bg = latte.base },
+        modified_selected = { fg = latte.peach, bg = latte.surface },
+        indicator_selected = { fg = latte.mauve, bg = latte.surface },
       },
     },
   },
@@ -89,7 +89,7 @@ return {
   ██╔══██║██║   ██║██╔══██╗██╔══██║
   ██║  ██║╚██████╔╝██║  ██║██║  ██║
   ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
-          LazyVim  ·  Aura Dark]],
+          LazyVim  ·  Catppuccin Latte]],
         },
       },
     },

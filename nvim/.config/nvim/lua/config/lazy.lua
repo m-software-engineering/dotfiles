@@ -32,7 +32,7 @@ require("lazy").setup({
     lazy = false,
     version = false,
   },
-  install = { colorscheme = { "aura-dark", "habamax" } },
+  install = { colorscheme = { "catppuccin-latte", "habamax" } },
   checker = {
     enabled = true,
     notify = false,

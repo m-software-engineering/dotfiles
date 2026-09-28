@@ -58,19 +58,19 @@ HIST_STAMPS="%Y-%m-%d %H:%M:%S"
 plugins=(git fzf zsh-interactive-cd colored-man-pages command-not-found zsh-completions zsh-autosuggestions)
 
 export FZF_DEFAULT_OPTS="\
-  --color=bg:#15141b,fg:#edecee,hl:#a277ff \
-  --color=bg+:#29263c,fg+:#edecee,hl+:#61ffca \
-  --color=info:#82e2ff,prompt:#a277ff,pointer:#61ffca \
-  --color=marker:#f694ff,spinner:#ffca85,header:#6d6d6d"
+  --color=bg:#eff1f5,fg:#4c4f69,hl:#8839ef \
+  --color=bg+:#ccd0da,fg+:#4c4f69,hl+:#40a02b \
+  --color=info:#1e66f5,prompt:#8839ef,pointer:#40a02b \
+  --color=marker:#ea76cb,spinner:#fe640b,header:#6c6f85"
 
 source $ZSH/oh-my-zsh.sh
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6d6d6d"
-ZSH_THEME_GIT_PROMPT_PREFIX="%F{#6d6d6d}git:%f%F{#ffca85}"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6c6f85"
+ZSH_THEME_GIT_PROMPT_PREFIX="%F{#6c6f85}git:%f%F{#fe640b}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%f "
-ZSH_THEME_GIT_PROMPT_DIRTY="%F{#ff6767}*%f"
+ZSH_THEME_GIT_PROMPT_DIRTY="%F{#d20f39}*%f"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
-PROMPT=$'%F{#61ffca}%n@%m%f %F{#a277ff}%~%f %F{#6d6d6d}%D{%H:%M:%S}%f $(git_prompt_info)\n%F{#a277ff}❯%f '
+PROMPT=$'%F{#40a02b}%n@%m%f %F{#8839ef}%~%f %F{#6c6f85}%D{%H:%M:%S}%f $(git_prompt_info)\n%F{#8839ef}❯%f '
 
 # User configuration
 
@@ -121,6 +121,6 @@ setopt IGNORE_EOF
 
 # One-line stamp; skip panes too narrow to hold "m config".
 if [[ -o interactive && ${COLUMNS:-80} -ge 9 ]]; then
-  printf '\033[38;2;162;119;255mm config\033[0m\n'
+  printf '\033[38;2;136;57;239mm config\033[0m\n'
 fi
 
