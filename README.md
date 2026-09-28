@@ -64,8 +64,7 @@ tmux prefix is `Ctrl+Space`. If it does nothing, turn off Control+Space under Sy
 ## Constraints that break a clean install
 
 - OpenCode is `opencode-v2` from `anomalyco/tap`. Do not add core `brew "opencode"`; both install an `opencode` binary.
-- The Discord client is `concord`, not the Discord desktop cask.
-- Do not re-add `claude`, `claude-code`, `discord`, `whatsapp`, or `steam`.
+- The Discord client in the bundle is `concord`, not the Discord desktop cask. Both can be installed later; they are different programs.
 - Do not commit Context7 keys, Codex project trust, or machine paths. The key lives in `$HOME/.config/m-config/context7.env`.
 
 SSH defaults refuse agent and password auth until a host file opts in. After `stow ssh`, copy `$HOME/.ssh/config.d/example.conf` and point it at one key.

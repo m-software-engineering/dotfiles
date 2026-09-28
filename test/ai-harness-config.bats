@@ -76,14 +76,3 @@ function brewfile_installs_opencode_v2_not_core_v1 { #@test
   grep -Fq 'brew "opencode-v2"' "${BREWFILE}"
   ! grep -Eq '^[[:space:]]*brew[[:space:]]+"opencode"[[:space:]]*(#|$)' "${BREWFILE}"
 }
-
-function retired_apps_are_absent_from_managed_packages { #@test
-  local retired
-  for retired in claude claude-code discord whatsapp steam; do
-    ! grep -Eq "^[[:space:]]*(brew|cask)[[:space:]]+\"${retired}\"" "${BREWFILE}"
-  done
-
-  run git -C "${PROJECT_ROOT}" ls-files claude
-  [ "${status}" -eq 0 ]
-  [ -z "${output}" ]
-}
