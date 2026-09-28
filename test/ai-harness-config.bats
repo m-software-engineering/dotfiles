@@ -71,20 +71,10 @@ function brewfile_installs_concord_discord_client { #@test
   grep -Fq 'brew "concord"' "${BREWFILE}"
 }
 
-function brewfile_installs_rtk_token_killer { #@test
-  grep -Fq 'brew "rtk"' "${BREWFILE}"
-  grep -Fq 'CLI proxy to minimize LLM token consumption' "${BREWFILE}"
-}
-
 function brewfile_installs_opencode_v2_not_core_v1 { #@test
   grep -Fq 'tap "anomalyco/tap"' "${BREWFILE}"
   grep -Fq 'brew "opencode-v2"' "${BREWFILE}"
   ! grep -Eq '^[[:space:]]*brew[[:space:]]+"opencode"[[:space:]]*(#|$)' "${BREWFILE}"
-}
-
-function brewfile_installs_grok_bot_cask { #@test
-  grep -Fq 'cask "grok-bot"' "${BREWFILE}"
-  grep -Fq 'AI teammates that work across your apps and tools' "${BREWFILE}"
 }
 
 function retired_apps_are_absent_from_managed_packages { #@test
