@@ -17,7 +17,7 @@ Each top-level directory is a stow package unless noted:
 - `codex` - Codex CLI config
 - `opencode` - OpenCode config
 - `scripts` - helper scripts
-- `images` - assets used by other configs
+- `images` - assets used by other configs. `images/images/cloud.jpg` is the desktop wallpaper the installer can apply; stow links it to `~/images/cloud.jpg`
 - `browser` - exported Chromium-family browser data (not a stow package)
 - `test` - bats tests (not a stow package)
 - `Brewfile` - shortcut symlink to `homebrew/.config/homebrew/Brewfile`
