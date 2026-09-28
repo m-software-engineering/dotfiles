@@ -12,15 +12,15 @@ setup() {
   BREWFILE="${PROJECT_ROOT}/homebrew/.config/homebrew/Brewfile"
 }
 
-# Verifies LazyVim bootstrap, Aura Dark, and useful language extras.
-function nvim_uses_lazyvim_with_aura_dark { #@test
+# Verifies LazyVim bootstrap, Catppuccin Latte, and useful language extras.
+function nvim_uses_lazyvim_with_catppuccin_latte { #@test
   grep -Fqx 'require("config.lazy")' "${NVIM_INIT}"
   grep -Fq '{ "LazyVim/LazyVim", import = "lazyvim.plugins" }' "${NVIM_LAZY}"
-  grep -Fq '"baliestri/aura-theme"' "${NVIM_COLORSCHEME}"
-  grep -Fq 'aura-dark' "${NVIM_COLORSCHEME}"
-  grep -Fq 'aura-dark' "${NVIM_LAZY}"
+  grep -Fq '"catppuccin/nvim"' "${NVIM_COLORSCHEME}"
+  grep -Fq 'catppuccin-latte' "${NVIM_COLORSCHEME}"
+  grep -Fq 'catppuccin-latte' "${NVIM_LAZY}"
   grep -Fq 'nvim-lualine/lualine.nvim' "${NVIM_UI}"
-  grep -Fq 'LazyVim  ·  Aura Dark' "${NVIM_UI}"
+  grep -Fq 'LazyVim  ·  Catppuccin Latte' "${NVIM_UI}"
   grep -Fq 'lazyvim.plugins.extras.lang.typescript' "${NVIM_LAZY}"
   grep -Fq 'lazyvim.plugins.extras.lang.python' "${NVIM_LAZY}"
   grep -Fq 'lazyvim.plugins.extras.lang.go' "${NVIM_LAZY}"

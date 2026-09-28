@@ -1,4 +1,4 @@
-daltonmenezes.aura-theme
+Catppuccin.catppuccin-vsc
 dbaeumer.vscode-eslint
 docker.docker
 esbenp.prettier-vscode

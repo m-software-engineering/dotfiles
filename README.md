@@ -17,7 +17,7 @@ Each top-level directory is a stow package unless noted:
 - `codex` - Codex CLI config
 - `opencode` - OpenCode config
 - `scripts` - helper scripts
-- `images` - assets used by other configs
+- `images` - assets used by other configs. `images/images/cloud.jpg` is the desktop wallpaper the installer can apply; stow links it to `~/images/cloud.jpg`
 - `browser` - exported Chromium-family browser data (not a stow package)
 - `test` - bats tests (not a stow package)
 - `Brewfile` - shortcut symlink to `homebrew/.config/homebrew/Brewfile`
@@ -148,21 +148,21 @@ This script requires `duti`, which is installed by the `Brewfile`.
 
 ## Theme
 
-Visual configs use [Aura Dark](https://github.com/daltonmenezes/aura-theme):
+Visual configs use [Catppuccin Latte](https://github.com/catppuccin/catppuccin), the light flavor:
 
 - WezTerm color scheme and tab chrome
 - tmux status, panes, and messages
-- VSCodium `Aura Dark` plus `daltonmenezes.aura-theme`
-- Neovim / LazyVim `aura-dark` with Aura lualine, bufferline, and dashboard
-- git-delta decorations and `syntax-theme = ansi` so diffs follow the terminal
+- VSCodium `Catppuccin Latte` plus `Catppuccin.catppuccin-vsc`
+- Neovim / LazyVim `catppuccin-latte` with Latte lualine, bufferline, and dashboard
+- git-delta decorations, `light = true`, and `syntax-theme = ansi` so diffs follow the terminal
 - zsh prompt, fzf, autosuggestions, and the `m config` banner
-- Helium/Chrome theme id `ddipnaombfnagpagnpdkdinoekfhfjoh`
+- Helium/Chrome theme id `jhjnalhegpceacdhbplhnakmkdliaddd`
 
-Canonical tokens: background `#15141b`, foreground `#edecee`, purple `#a277ff`,
-green `#61ffca`, orange `#ffca85`, pink `#f694ff`, blue `#82e2ff`, red `#ff6767`,
-comment gray `#6d6d6d`, selection `#29263c`.
+Canonical tokens: background `#eff1f5`, foreground `#4c4f69`, mauve `#8839ef`,
+green `#40a02b`, peach `#fe640b`, pink `#ea76cb`, blue `#1e66f5`, red `#d20f39`,
+comment gray `#6c6f85`, surface `#ccd0da`.
 
-Run the palette checks with `bats test/aura-theme.bats`.
+Run the palette checks with `bats test/catppuccin-latte.bats`.
 
 ## WezTerm
 
@@ -170,7 +170,7 @@ The WezTerm profile balances a polished macOS appearance with sustained
 efficiency on Apple silicon. It retains smooth 60 FPS rendering, animated UI,
 cursor motion, and subtle translucency while using the low-power WebGPU
 preference, limiting animation to 30 FPS, and avoiding the original heavy blur.
-This keeps the Aura Dark visual character without returning to the original
+This keeps the Catppuccin Latte visual character without returning to the original
 120 FPS compositor load.
 
 ## tmux
@@ -193,7 +193,7 @@ Run the config tests with `bats test/tmux-config.bats`.
 
 ## Neovim / LazyVim
 
-Stow the nvim package to install a LazyVim starter with Aura Dark:
+Stow the nvim package to install a LazyVim starter with Catppuccin Latte:
 
 ```sh
 stow --target "$HOME" nvim
@@ -203,7 +203,7 @@ stow --target "$HOME" nvim
 `font-fira-code-nerd-font`. First launch bootstraps lazy.nvim and LazyVim.
 
 The config keeps LazyVim defaults for keymaps, LSP, and completion, then layers
-Aura UI on lualine, bufferline, Snacks dashboard/indent, and Flash/WhichKey.
+Catppuccin Latte UI on lualine, bufferline, Snacks dashboard/indent, and Flash/WhichKey.
 Language extras match this machine's stack: TypeScript, Python, Go, Docker,
 JSON, YAML, TOML, Markdown, and Git.
 
@@ -223,7 +223,7 @@ Preview the settings without applying them:
 scripts/scripts/macos-performance-beauty.sh --dry-run
 ```
 
-The profile keeps macOS fast and polished by tuning global UI latency, Dock animation, Finder defaults, Stage Manager, screenshot behavior, and portable trackpad gestures including three-finger drag. It intentionally does not pin Dock apps, change hot corners, rewrite keyboard shortcuts, or alter power settings.
+The profile keeps macOS fast and polished by tuning global UI latency, Dock animation, Finder defaults, Stage Manager, screenshot behavior, and portable trackpad gestures including three-finger drag. It sets light appearance as the default by removing `AppleInterfaceStyle` and disabling automatic appearance switching. The accent stays system blue. It intentionally does not pin Dock apps, change hot corners, rewrite keyboard shortcuts, or alter power settings. Shottr and AltTab shortcuts live in a separate script.
 
 The m-config installer offers this step as an opt-in prompt.
 
@@ -251,7 +251,7 @@ Set `BROWSER_PROFILE_ROOT` to export from another Chromium-family browser profil
 ## VSCodium
 
 - Settings: `vscodium/Library/Application Support/VSCodium/User/settings.json`
-- Theme: `Aura Dark` via `daltonmenezes.aura-theme`
+- Theme: `Catppuccin Latte` via `Catppuccin.catppuccin-vsc`
 - Extensions list: `vscodium/vscodium-extensions.txt`
 
 Install listed extensions (requires `codium` on PATH):
@@ -272,14 +272,15 @@ The shell and Git configs use `codium --wait` as the default local editor.
 - Both harnesses configure Chrome DevTools, Playwright, Context7, Figma, and DeepWiki MCP servers. Chrome DevTools and Playwright run through `npx`; the others use their official remote endpoints.
 - Context7 reads `CONTEXT7_API_KEY` from the environment. The installer can write it to `~/.config/m-config/context7.env` with owner-only permissions; the key is never stored in this repository.
 - Figma requires a one-time OAuth authorization in each harness: run `codex mcp login figma` and `opencode mcp auth figma` after installation.
-- `Brewfile` installs `codex`, OpenCode V2 from `anomalyco/tap` (`opencode-v2`), RTK (`brew "rtk"`, https://github.com/rtk-ai/rtk), and Grok Bot (`cask "grok-bot"`). Do not add the core `opencode` formula: it is V1 and conflicts because both install an `opencode` binary. Do not install the crates.io `rtk` package; that name can resolve to a different project. Restart the shell after setup so the Context7 environment is loaded.
+- `Brewfile` installs `codex`, OpenCode V2 from `anomalyco/tap` (`opencode-v2`), RTK (`brew "rtk"`, https://github.com/rtk-ai/rtk), Grok Bot (`cask "grok-bot"`), Shottr (`cask "shottr"`), and AltTab (`cask "alt-tab"`). Do not add the core `opencode` formula: it is V1 and conflicts because both install an `opencode` binary. Do not install the crates.io `rtk` package; that name can resolve to a different project. Restart the shell after setup so the Context7 environment is loaded.
 - The installer, not this bundle, installs the native ai-memory binary from https://github.com/akitaonrails/ai-memory and the Hermes skills `i-have-adhd` and `teach`.
 
 ## Maintenance scripts
 
 - `homebrew/.config/homebrew/homebrew-maintenance.sh` updates and upgrades Homebrew packages for the LaunchAgent.
 - `scripts/scripts/macos-debloat.sh` provides an interactive, idempotent cleanup for macOS 26+.
-- `scripts/scripts/macos-performance-beauty.sh` applies the reusable macOS performance and appearance profile.
+- `scripts/scripts/macos-performance-beauty.sh` applies the reusable macOS performance and appearance profile, including light appearance as the default.
+- `scripts/scripts/configure-shottr-alttab.sh` sets Shottr area capture to Command-S and makes AltTab the Command-Tab switcher. Command-S is global, so it takes Save from other apps while Shottr is running. AltTab replaces the system switcher only after Accessibility permission and a relaunch.
 
 ## Notes
 
